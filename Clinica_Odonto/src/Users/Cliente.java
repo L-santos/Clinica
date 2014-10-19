@@ -15,7 +15,12 @@ public class Cliente {
     private String telefone;
     
     //TODO: Adicionar gets e sets para o Cliente
-    public String Getcpf(){
-        return cpf;
+    public String getCpf(){
+        return this.cpf;
+    }
+    
+    public String setCpf(String cpf)
+    {
+        this.cpf = _cpf;
     }
 }
