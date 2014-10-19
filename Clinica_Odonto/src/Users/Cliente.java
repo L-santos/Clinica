@@ -10,7 +10,10 @@ package Users;
  * @author LucasPc
  */
 public class Cliente {
-    String cpf;
-    String nome;
+    private String cpf;
+    private String nome;
+    private String telefone;
+    
+    //TODO: Adicionar gets e sets para o Cliente
     
 }
