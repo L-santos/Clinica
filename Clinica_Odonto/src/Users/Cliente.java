@@ -19,7 +19,16 @@ public class Cliente {
         return this.cpf;
     }
     
-    public String setCpf(String cpf)
+    public String setCpf(String _cpf)
+    {
+        this.cpf = _cpf;
+    }
+    
+     public String getNome(){
+        return this.cpf;
+    }
+    
+    public String setNome(String _nome)
     {
         this.cpf = _cpf;
     }
