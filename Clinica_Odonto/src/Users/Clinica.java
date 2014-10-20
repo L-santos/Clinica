@@ -13,10 +13,11 @@ import java.util.Date;
  * @author LucasPc
  */
 public class Clinica implements ClinicaInterface {
-    ArrayList<Cliente> Clientes = new ArrayList();
-    ArrayList<Consulta> Consultas = new ArrayList();
-    ArrayList<Medico> Medicos = new ArrayList();
-    
+
+    ArrayList<Cliente> Clientes = new ArrayList<>();
+    ArrayList<Consulta> Consultas = new ArrayList<>();
+    ArrayList<Medico> Medicos = new ArrayList<>();
+
     @Override
     public int MarcarConsulta(String cpf, Date data) {
         this.Consultas.add(new Consulta(cpf, data));
@@ -53,17 +54,17 @@ public class Clinica implements ClinicaInterface {
     }
 
     @Override
-    public int AddCliente(Cliente _cliente) {
+    public int AddCliente(Cliente cliente) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public int AddMedico(Medico _medico) {
+    public int AddMedico(Medico medico) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public int AddFuncionario(Funcionario _funcionario) {
+    public int AddFuncionario(Funcionario funcionario) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
