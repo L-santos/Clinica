@@ -35,11 +35,11 @@
   04	  break;
   05  case DEF:
   06    comandos;
-  07	  break;
+  07	break;
   08  case XYZ:
   09    comandos;
-  10	  break;
+  10	break;
   11  default:
-  12	  comandos;
-  13	  break;
+  12    comandos;
+  13    break;
   14 }
