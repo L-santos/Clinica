@@ -32,7 +32,7 @@
   01 switch (variavel) {
   02  case ABC:
   03    comandos;
-  04	  break;
+  04	break;
   05  case DEF:
   06    comandos;
   07	break;
