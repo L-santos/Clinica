@@ -2,6 +2,7 @@
 *Pull Requests devem conter um comentario descrevendo as funcionalidades adicionadas
 *Nomes sugestivos para classes e metodos
 *Chave de abertura de métodos e classes deve ficar na mesma linha da declaração
+*Antes de enviar, idente o arquivo usando o "formatar" no Netbeans.
 
 *Metodos são declarados em lowerCamelCase
     Ex:
@@ -17,29 +18,3 @@
       //TODO
     }
     
-*Adicione comentarios em novos métodos e classes
-
-*if - else
-  1	if (condicao1) {
-  2	    comandos;
-  3	} else if (condicao2) {
-  4	    comandos;
-  5	} else {
-  6     comandos;
-  7	}
-
-*switch
-  01 switch (variavel) {
-  02  case ABC:
-  03    comandos;
-  04	break;
-  05  case DEF:
-  06    comandos;
-  07	break;
-  08  case XYZ:
-  09    comandos;
-  10	break;
-  11  default:
-  12    comandos;
-  13    break;
-  14 }
