@@ -14,9 +14,9 @@ import java.util.Date;
  */
 public class Clinica implements ClinicaInterface {
 
-    ArrayList<Cliente> Clientes = new ArrayList();
-    ArrayList<Consulta> Consultas = new ArrayList();
-    ArrayList<Medico> Medicos = new ArrayList();
+    ArrayList<Cliente> Clientes = new ArrayList<>();
+    ArrayList<Consulta> Consultas = new ArrayList<>();
+    ArrayList<Medico> Medicos = new ArrayList<>();
 
     @Override
     public int MarcarConsulta(String cpf, Date data) {
