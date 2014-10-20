@@ -19,8 +19,7 @@ public class Cliente {
         return this.cpf;
     }
     
-    public String setCpf(String _cpf)
-    {
+    public String setCpf(String _cpf){
         this.cpf = _cpf;
     }
     
