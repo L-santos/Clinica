@@ -5,16 +5,25 @@
  */
 package Design;
 
+import Users.*;
+import java.util.ArrayList;
+import java.util.Date;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author LucasPc
  */
 public class ClinicaFrame extends javax.swing.JFrame {
 
+    Clinica _clinica = new Clinica();
+        
     /**
      * Creates new form ClinicaFrame
      */
     public ClinicaFrame() {
+
         initComponents();
     }
 
@@ -27,16 +36,35 @@ public class ClinicaFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jConsultaDialog = new javax.swing.JDialog();
+        jLabel1 = new javax.swing.JLabel();
+        txtCpfCliente = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        txtRegMedic = new javax.swing.JTextField();
+        jBtMarcarConsulta = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox();
+        jLabel6 = new javax.swing.JLabel();
+        jClienteDialog = new javax.swing.JDialog();
+        jLabel3 = new javax.swing.JLabel();
+        txtCpfCliente1 = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        txtNomeCliente = new javax.swing.JTextField();
+        jBtAddCliente = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        txtTelCliente = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         ConsultasPanel = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
-        jButton1 = new javax.swing.JButton();
+        jBtAddConsulta = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
         jButton4 = new javax.swing.JButton();
         jSeparator5 = new javax.swing.JSeparator();
         ClientesPanel = new javax.swing.JPanel();
         jSeparator2 = new javax.swing.JSeparator();
-        jButton2 = new javax.swing.JButton();
+        jBtAddNCliente = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         GerenciaPanel = new javax.swing.JPanel();
         jSeparator4 = new javax.swing.JSeparator();
         jButton3 = new javax.swing.JButton();
@@ -49,18 +77,149 @@ public class ClinicaFrame extends javax.swing.JFrame {
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
 
+        jConsultaDialog.setMinimumSize(new java.awt.Dimension(400, 300));
+
+        jLabel1.setText("CPF");
+
+        jLabel2.setText("Data");
+
+        jBtMarcarConsulta.setText("Adicionar");
+        jBtMarcarConsulta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtMarcarConsultaActionPerformed(evt);
+            }
+        });
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabel6.setText("Médico");
+
+        javax.swing.GroupLayout jConsultaDialogLayout = new javax.swing.GroupLayout(jConsultaDialog.getContentPane());
+        jConsultaDialog.getContentPane().setLayout(jConsultaDialogLayout);
+        jConsultaDialogLayout.setHorizontalGroup(
+            jConsultaDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jConsultaDialogLayout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addGroup(jConsultaDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jBtMarcarConsulta)
+                    .addGroup(jConsultaDialogLayout.createSequentialGroup()
+                        .addGroup(jConsultaDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jConsultaDialogLayout.createSequentialGroup()
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(24, 24, 24))
+                            .addGroup(jConsultaDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jConsultaDialogLayout.createSequentialGroup()
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGap(20, 20, 20))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jConsultaDialogLayout.createSequentialGroup()
+                                    .addComponent(jLabel6)
+                                    .addGap(18, 18, 18))))
+                        .addGroup(jConsultaDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtCpfCliente)
+                            .addComponent(txtRegMedic)
+                            .addComponent(jComboBox1, 0, 156, Short.MAX_VALUE))))
+                .addContainerGap(156, Short.MAX_VALUE))
+        );
+        jConsultaDialogLayout.setVerticalGroup(
+            jConsultaDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jConsultaDialogLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(jConsultaDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(txtCpfCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jConsultaDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(txtRegMedic, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jConsultaDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
+                .addGap(27, 27, 27)
+                .addComponent(jBtMarcarConsulta)
+                .addContainerGap(134, Short.MAX_VALUE))
+        );
+
+        jClienteDialog.setMinimumSize(new java.awt.Dimension(400, 300));
+
+        jLabel3.setText("CPF");
+
+        jLabel4.setText("Nome");
+
+        jBtAddCliente.setText("Adicionar");
+        jBtAddCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtAddClienteActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setText("Telefone");
+
+        jLabel7.setText("Resultado: ");
+
+        javax.swing.GroupLayout jClienteDialogLayout = new javax.swing.GroupLayout(jClienteDialog.getContentPane());
+        jClienteDialog.getContentPane().setLayout(jClienteDialogLayout);
+        jClienteDialogLayout.setHorizontalGroup(
+            jClienteDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jClienteDialogLayout.createSequentialGroup()
+                .addGroup(jClienteDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jClienteDialogLayout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addGroup(jClienteDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel5))
+                        .addGap(30, 30, 30)
+                        .addGroup(jClienteDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(txtTelCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
+                            .addComponent(txtNomeCliente)
+                            .addComponent(txtCpfCliente1)))
+                    .addGroup(jClienteDialogLayout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(jBtAddCliente))
+                    .addGroup(jClienteDialogLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(48, Short.MAX_VALUE))
+        );
+        jClienteDialogLayout.setVerticalGroup(
+            jClienteDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jClienteDialogLayout.createSequentialGroup()
+                .addGroup(jClienteDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jClienteDialogLayout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addComponent(jLabel3))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jClienteDialogLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(txtCpfCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jClienteDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(txtNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jClienteDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(txtTelCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
+                .addComponent(jBtAddCliente)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(99, Short.MAX_VALUE))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setResizable(false);
 
-        jTabbedPane1.setBackground(java.awt.SystemColor.window);
-
         ConsultasPanel.setBackground(new java.awt.Color(255, 255, 255));
 
-        jButton1.setText("Adicionar Consulta");
-
-        jTextField1.setText("jTextField1");
+        jBtAddConsulta.setText("Adicionar Consulta");
+        jBtAddConsulta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtAddConsultaActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Pesquisar");
 
@@ -75,14 +234,14 @@ public class ClinicaFrame extends javax.swing.JFrame {
                 .addGroup(ConsultasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jSeparator1)
                     .addGroup(ConsultasPanelLayout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(jBtAddConsulta)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton4)
-                        .addGap(0, 249, Short.MAX_VALUE)))
+                        .addGap(0, 154, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         ConsultasPanelLayout.setVerticalGroup(
@@ -95,17 +254,24 @@ public class ClinicaFrame extends javax.swing.JFrame {
                             .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton4))
                         .addComponent(jSeparator5))
-                    .addComponent(jButton1))
+                    .addComponent(jBtAddConsulta))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(345, Short.MAX_VALUE))
+                .addContainerGap(433, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Consultas", ConsultasPanel);
 
         ClientesPanel.setBackground(new java.awt.Color(255, 255, 255));
 
-        jButton2.setText("Adicionar Cliente");
+        jBtAddNCliente.setText("Adicionar Cliente");
+        jBtAddNCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtAddNClienteActionPerformed(evt);
+            }
+        });
+
+        jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout ClientesPanelLayout = new javax.swing.GroupLayout(ClientesPanel);
         ClientesPanel.setLayout(ClientesPanelLayout);
@@ -116,18 +282,20 @@ public class ClinicaFrame extends javax.swing.JFrame {
                 .addGroup(ClientesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jSeparator2)
                     .addGroup(ClientesPanelLayout.createSequentialGroup()
-                        .addComponent(jButton2)
-                        .addGap(0, 609, Short.MAX_VALUE)))
+                        .addComponent(jBtAddNCliente)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 627, Short.MAX_VALUE))
                 .addContainerGap())
         );
         ClientesPanelLayout.setVerticalGroup(
             ClientesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ClientesPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton2)
+                .addComponent(jBtAddNCliente)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(345, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jTabbedPane1.addTab("Clientes", ClientesPanel);
@@ -150,7 +318,7 @@ public class ClinicaFrame extends javax.swing.JFrame {
                         .addComponent(jButton3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton5)
-                        .addGap(0, 462, Short.MAX_VALUE)))
+                        .addGap(0, 367, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         GerenciaPanelLayout.setVerticalGroup(
@@ -162,7 +330,7 @@ public class ClinicaFrame extends javax.swing.JFrame {
                     .addComponent(jButton5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(345, Short.MAX_VALUE))
+                .addContainerGap(433, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Gerenciar", GerenciaPanel);
@@ -193,23 +361,37 @@ public class ClinicaFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTabbedPane1)
-                .addContainerGap())
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTabbedPane1)
-                .addContainerGap())
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
-
-        jTabbedPane1.getAccessibleContext().setAccessibleName("Consulta");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jBtAddConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtAddConsultaActionPerformed
+
+        this.jConsultaDialog.setVisible(true);
+
+    }//GEN-LAST:event_jBtAddConsultaActionPerformed
+
+    private void jBtMarcarConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtMarcarConsultaActionPerformed
+        Date d = new Date();
+        boolean MarcarConsulta = _clinica.MarcarConsulta(txtCpfCliente.getText(), txtRegMedic.getText(), d);
+        jLabel6.setText("" + MarcarConsulta);
+
+    }//GEN-LAST:event_jBtMarcarConsultaActionPerformed
+
+    private void jBtAddClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtAddClienteActionPerformed
+        boolean AddCliente = _clinica.AddCliente(new Cliente(txtCpfCliente1.getText(), txtNomeCliente.getText(), txtTelCliente.getText()));
+        jLabel7.setText("" + AddCliente);
+    }//GEN-LAST:event_jBtAddClienteActionPerformed
+
+    private void jBtAddNClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtAddNClienteActionPerformed
+        this.jClienteDialog.setVisible(true);
+    }//GEN-LAST:event_jBtAddNClienteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -237,11 +419,16 @@ public class ClinicaFrame extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(ClinicaFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
         /* Create and display the form */
+        
+       
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
-                new ClinicaFrame().setVisible(true);
+                //new ClinicaFrame().setVisible(true);
+                ClinicaFrame clinica = new ClinicaFrame();
+                clinica.setVisible(true);
+
             }
         });
     }
@@ -250,11 +437,23 @@ public class ClinicaFrame extends javax.swing.JFrame {
     private javax.swing.JPanel ClientesPanel;
     private javax.swing.JPanel ConsultasPanel;
     private javax.swing.JPanel GerenciaPanel;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jBtAddCliente;
+    private javax.swing.JButton jBtAddConsulta;
+    private javax.swing.JButton jBtAddNCliente;
+    private javax.swing.JButton jBtMarcarConsulta;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JDialog jClienteDialog;
+    private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JDialog jConsultaDialog;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
@@ -262,11 +461,18 @@ public class ClinicaFrame extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField txtCpfCliente;
+    private javax.swing.JTextField txtCpfCliente1;
+    private javax.swing.JTextField txtNomeCliente;
+    private javax.swing.JTextField txtRegMedic;
+    private javax.swing.JTextField txtTelCliente;
     // End of variables declaration//GEN-END:variables
 }

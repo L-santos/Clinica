@@ -42,7 +42,7 @@ public class Clinica implements ClinicaInterface {
     @Override
     public int MostrarConsultas() {
         for (Consulta Consulta : this.Consultas) {
-            System.out.println(Consulta.getCpfCliente());
+            System.out.println(Consulta.getIdConsulta()+" - "+Consulta.getCpfCliente());
             System.out.println(Consulta.getRegistroMedico());
             System.out.println(Consulta.getData());
         }

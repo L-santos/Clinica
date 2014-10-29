@@ -1,8 +1,6 @@
 
 package Users;
 
-import javax.swing.JTextField;
-
 /**
  *
  * @author LucasPc

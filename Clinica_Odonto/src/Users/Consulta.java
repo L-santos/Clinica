@@ -11,14 +11,15 @@ public class Consulta {
 
     private String cpfCliente;
     private String registroMedico;
-    private static int idConsulta = 0;
+    private int idConsulta;
+    private static int countConsulta = 0;
     private Date data = new Date();
 
     public Consulta(String _cpf, String _registro, Date _data) {
         this.cpfCliente = _cpf;
         this.registroMedico = _registro;
         this.data = _data;
-        idConsulta++;
+        idConsulta = countConsulta++;
     }
 
     public String getCpfCliente() {
