@@ -14,14 +14,19 @@ import java.util.Date;
  */
 public class Clinica implements ClinicaInterface {
 
-    ArrayList<Cliente> Clientes = new ArrayList<>();
+    public ArrayList<Cliente> Clientes = new ArrayList<>();
     ArrayList<Consulta> Consultas = new ArrayList<>();
     ArrayList<Medico> Medicos = new ArrayList<>();
 
     @Override
-    public int MarcarConsulta(String cpf, Date data) {
-        this.Consultas.add(new Consulta(cpf, data));
-        return 0;
+    public boolean MarcarConsulta(String cpf, String registro, Date data) {
+        if(this.PesquisarCliente(cpf)==true)
+        {
+            this.Consultas.add(new Consulta(cpf, registro, data));
+            return true;
+        }else{
+            return false;
+        }
     }
 
     @Override
@@ -38,6 +43,7 @@ public class Clinica implements ClinicaInterface {
     public int MostrarConsultas() {
         for (Consulta Consulta : this.Consultas) {
             System.out.println(Consulta.getCpfCliente());
+            System.out.println(Consulta.getRegistroMedico());
             System.out.println(Consulta.getData());
         }
         return 0;
@@ -49,13 +55,21 @@ public class Clinica implements ClinicaInterface {
     }
 
     @Override
-    public int PesquisarUsuario(String termo, int parametro) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean PesquisarCliente(String cpf) {
+        for(Cliente Consulta : this.Clientes)
+        {
+            if(cpf.equals(Consulta.getCpf()))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
-    public int AddCliente(Cliente cliente) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean AddCliente(Cliente cliente) {
+        this.Clientes.add(cliente);
+        return true;
     }
 
     @Override
