@@ -9,6 +9,7 @@ package Users;
  *
  * @author LucasPc
  */
+
 public class Medico {
    private String cpfMedico;
    private String nome;

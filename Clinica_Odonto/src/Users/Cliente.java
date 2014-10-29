@@ -9,6 +9,12 @@ public class Cliente {
     private String cpf;
     private String nome;
     private String telefone;
+
+    public Cliente(String Cpf, String Nome, String Tel) {
+        this.cpf = Cpf;
+        this.nome = Nome;
+        this.telefone = Tel;
+    }
     
     public String getCpf() {
         return this.cpf;
