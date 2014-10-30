@@ -15,5 +15,37 @@ public class Medico {
    private String nome;
    private String registro;
    private int especialidade;
-    
+   
+  public Medico(String Cpf_M, String Nome_M, String Registro_M, int Esp_M){
+      this.cpfMedico = Cpf_M;
+      this.nome = Nome_M;
+      this.registro = Registro_M;
+      this.especialidade = Esp_M;
+  }
+  
+  public String getCpf_M(){
+      return this.cpfMedico;
+  }
+  public void setCpf_M(String _Cpf_M){
+      this.cpfMedico = _Cpf_M;
+  }
+  
+  public String setNome_M(){
+      return this.nome;
+  }
+  public void setNome_M(String _Nome_M){
+      this.nome = _Nome_M;
+  }
+  public String getRegistro_M(){
+      return this.registro;
+  }
+  public void setRegistro_M(String _Registro_M){
+      this.registro = _Registro_M;
+  }
+  public int getEsp_M(){
+      return this.especialidade;
+  }
+  public void setEsp_M(int _Esp_M){
+      this.especialidade = _Esp_M;
+  }
 }
