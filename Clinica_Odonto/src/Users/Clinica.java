@@ -69,6 +69,7 @@ public class Clinica implements ClinicaInterface {
     @Override
     public boolean AddCliente(Cliente cliente) {
         this.Clientes.add(cliente);
+        
         return true;
     }
 
