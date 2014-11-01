@@ -53,6 +53,16 @@ public class ClinicaFrame extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         txtTelCliente = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
+        jDentistaDialog = new javax.swing.JDialog();
+        jLabel8 = new javax.swing.JLabel();
+        txtCpfMedico = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        txtNomeMedico = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        txtRegistroMedico = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        JCBEspecialidade = new javax.swing.JComboBox();
+        jButton1 = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         ConsultasPanel = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -207,6 +217,75 @@ public class ClinicaFrame extends javax.swing.JFrame {
                 .addContainerGap(99, Short.MAX_VALUE))
         );
 
+        jDentistaDialog.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jDentistaDialog.setMinimumSize(new java.awt.Dimension(400, 300));
+
+        jLabel8.setText("CPF");
+
+        jLabel9.setText("NOME");
+
+        jLabel10.setText("REG");
+
+        jLabel11.setText("ESP");
+
+        JCBEspecialidade.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jButton1.setText("Adicionar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jDentistaDialogLayout = new javax.swing.GroupLayout(jDentistaDialog.getContentPane());
+        jDentistaDialog.getContentPane().setLayout(jDentistaDialogLayout);
+        jDentistaDialogLayout.setHorizontalGroup(
+            jDentistaDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDentistaDialogLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(jDentistaDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jDentistaDialogLayout.createSequentialGroup()
+                        .addGroup(jDentistaDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel10)
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel8))
+                        .addGap(28, 28, 28)
+                        .addGroup(jDentistaDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtNomeMedico, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCpfMedico, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jDentistaDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(JCBEspecialidade, javax.swing.GroupLayout.Alignment.LEADING, 0, 87, Short.MAX_VALUE)
+                                .addComponent(txtRegistroMedico, javax.swing.GroupLayout.Alignment.LEADING))))
+                    .addGroup(jDentistaDialogLayout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addComponent(jButton1)))
+                .addContainerGap(99, Short.MAX_VALUE))
+        );
+        jDentistaDialogLayout.setVerticalGroup(
+            jDentistaDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDentistaDialogLayout.createSequentialGroup()
+                .addGap(39, 39, 39)
+                .addGroup(jDentistaDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(txtCpfMedico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jDentistaDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtNomeMedico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9))
+                .addGap(18, 18, 18)
+                .addGroup(jDentistaDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtRegistroMedico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10))
+                .addGap(18, 18, 18)
+                .addGroup(jDentistaDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(JCBEspecialidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(41, 41, 41)
+                .addComponent(jButton1)
+                .addContainerGap(63, Short.MAX_VALUE))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -303,6 +382,11 @@ public class ClinicaFrame extends javax.swing.JFrame {
         GerenciaPanel.setBackground(new java.awt.Color(255, 255, 255));
 
         jButton3.setText("Adicionar Dentista");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton5.setText("Adicionar Funcionario");
 
@@ -393,6 +477,15 @@ public class ClinicaFrame extends javax.swing.JFrame {
         this.jClienteDialog.setVisible(true);
     }//GEN-LAST:event_jBtAddNClienteActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        this.jDentistaDialog.setVisible(true);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        boolean AddMedico = _clinica.AddMedico(new Medico(txtCpfMedico.getText(),txtNomeMedico.getText(),txtRegistroMedico.getText()));
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -437,23 +530,30 @@ public class ClinicaFrame extends javax.swing.JFrame {
     private javax.swing.JPanel ClientesPanel;
     private javax.swing.JPanel ConsultasPanel;
     private javax.swing.JPanel GerenciaPanel;
+    private javax.swing.JComboBox JCBEspecialidade;
     private javax.swing.JButton jBtAddCliente;
     private javax.swing.JButton jBtAddConsulta;
     private javax.swing.JButton jBtAddNCliente;
     private javax.swing.JButton jBtMarcarConsulta;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JDialog jClienteDialog;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JDialog jConsultaDialog;
+    private javax.swing.JDialog jDentistaDialog;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
@@ -471,8 +571,11 @@ public class ClinicaFrame extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField txtCpfCliente;
     private javax.swing.JTextField txtCpfCliente1;
+    private javax.swing.JTextField txtCpfMedico;
     private javax.swing.JTextField txtNomeCliente;
+    private javax.swing.JTextField txtNomeMedico;
     private javax.swing.JTextField txtRegMedic;
+    private javax.swing.JTextField txtRegistroMedico;
     private javax.swing.JTextField txtTelCliente;
     // End of variables declaration//GEN-END:variables
 }

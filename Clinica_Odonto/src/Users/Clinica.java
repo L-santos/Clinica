@@ -17,6 +17,7 @@ public class Clinica implements ClinicaInterface {
     public ArrayList<Cliente> Clientes = new ArrayList<>();
     ArrayList<Consulta> Consultas = new ArrayList<>();
     ArrayList<Medico> Medicos = new ArrayList<>();
+    ArrayList<Funcionario> Funcionario = new ArrayList<>();
 
     @Override
     public boolean MarcarConsulta(String cpf, String registro, Date data) {
@@ -74,12 +75,15 @@ public class Clinica implements ClinicaInterface {
     }
 
     @Override
-    public int AddMedico(Medico medico) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean AddMedico(Medico medico) {
+        this.Medicos.add(medico);
+        return true;
     }
 
     @Override
-    public int AddFuncionario(Funcionario funcionario) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean AddFuncionario(Funcionario funcionario) {
+        
+        this.Funcionario.add(funcionario);
+        return true;
     }
 }
