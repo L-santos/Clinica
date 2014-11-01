@@ -218,6 +218,7 @@ public class ClinicaFrame extends javax.swing.JFrame {
         );
 
         jDentistaDialog.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jDentistaDialog.setMinimumSize(new java.awt.Dimension(400, 300));
 
         jLabel8.setText("CPF");
 
@@ -289,8 +290,6 @@ public class ClinicaFrame extends javax.swing.JFrame {
         setBackground(new java.awt.Color(255, 255, 255));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setResizable(false);
-
-        jTabbedPane1.setBackground(java.awt.SystemColor.window);
 
         ConsultasPanel.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -483,7 +482,8 @@ public class ClinicaFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        boolean AddMedico = _clinica.AddMedico(new Medico(txtCpfMedico.getText(),txtNomeMedico.getText(), txtRegistroMedico.getText()));
+        boolean AddMedico = _clinica.AddMedico(new Medico(txtCpfMedico.getText(),txtNomeMedico.getText(),txtRegistroMedico.getText()));
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
