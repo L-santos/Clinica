@@ -5,9 +5,15 @@
  */
 package Design;
 
+import Persistence.Connect;
 import Users.*;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -18,7 +24,7 @@ import javax.swing.table.DefaultTableModel;
 public class ClinicaFrame extends javax.swing.JFrame {
 
     Clinica _clinica = new Clinica();
-        
+
     /**
      * Creates new form ClinicaFrame
      */
@@ -63,6 +69,16 @@ public class ClinicaFrame extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         JCBEspecialidade = new javax.swing.JComboBox();
         jButton1 = new javax.swing.JButton();
+        jTextField2 = new javax.swing.JTextField();
+        jConnDialog = new javax.swing.JDialog();
+        jPanel1 = new javax.swing.JPanel();
+        txtPass = new javax.swing.JTextField();
+        txtUser = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        connErro = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        btConect = new javax.swing.JButton();
+        jLabel15 = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         ConsultasPanel = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -73,8 +89,8 @@ public class ClinicaFrame extends javax.swing.JFrame {
         ClientesPanel = new javax.swing.JPanel();
         jSeparator2 = new javax.swing.JSeparator();
         jBtAddNCliente = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tbCliente = new javax.swing.JTable();
         GerenciaPanel = new javax.swing.JPanel();
         jSeparator4 = new javax.swing.JSeparator();
         jButton3 = new javax.swing.JButton();
@@ -86,6 +102,7 @@ public class ClinicaFrame extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
+        btConnBanco = new javax.swing.JMenuItem();
 
         jConsultaDialog.setMinimumSize(new java.awt.Dimension(400, 300));
 
@@ -237,6 +254,8 @@ public class ClinicaFrame extends javax.swing.JFrame {
             }
         });
 
+        jTextField2.setText("jTextField2");
+
         javax.swing.GroupLayout jDentistaDialogLayout = new javax.swing.GroupLayout(jDentistaDialog.getContentPane());
         jDentistaDialog.getContentPane().setLayout(jDentistaDialogLayout);
         jDentistaDialogLayout.setHorizontalGroup(
@@ -259,7 +278,9 @@ public class ClinicaFrame extends javax.swing.JFrame {
                                 .addComponent(txtRegistroMedico, javax.swing.GroupLayout.Alignment.LEADING))))
                     .addGroup(jDentistaDialogLayout.createSequentialGroup()
                         .addGap(11, 11, 11)
-                        .addComponent(jButton1)))
+                        .addGroup(jDentistaDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton1)
+                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(99, Short.MAX_VALUE))
         );
         jDentistaDialogLayout.setVerticalGroup(
@@ -283,7 +304,96 @@ public class ClinicaFrame extends javax.swing.JFrame {
                     .addComponent(JCBEspecialidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(41, 41, 41)
                 .addComponent(jButton1)
-                .addContainerGap(63, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(32, Short.MAX_VALUE))
+        );
+
+        jConnDialog.setTitle("Banco de Dados");
+        jConnDialog.setMinimumSize(new java.awt.Dimension(400, 300));
+        jConnDialog.setResizable(false);
+
+        jLabel12.setText("Senha");
+
+        connErro.setForeground(new java.awt.Color(255, 0, 0));
+
+        jLabel14.setText("Usuario");
+
+        btConect.setText("Continuar");
+        btConect.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btConectActionPerformed(evt);
+            }
+        });
+
+        jLabel15.setText("Assistente de Conexão com o Banco de Dados");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(39, 39, 39)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(connErro, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel12))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtUser, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
+                            .addComponent(txtPass)))
+                    .addComponent(btConect))
+                .addContainerGap(99, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addContainerGap(73, Short.MAX_VALUE)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(65, 65, 65)))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(63, 63, 63)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel14))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(37, 37, 37)
+                .addComponent(btConect)
+                .addGap(29, 29, 29)
+                .addComponent(connErro, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(67, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(21, 21, 21)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(245, Short.MAX_VALUE)))
+        );
+
+        javax.swing.GroupLayout jConnDialogLayout = new javax.swing.GroupLayout(jConnDialog.getContentPane());
+        jConnDialog.getContentPane().setLayout(jConnDialogLayout);
+        jConnDialogLayout.setHorizontalGroup(
+            jConnDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(jConnDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jConnDialogLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        jConnDialogLayout.setVerticalGroup(
+            jConnDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(jConnDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jConnDialogLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -350,7 +460,18 @@ public class ClinicaFrame extends javax.swing.JFrame {
             }
         });
 
-        jScrollPane1.setViewportView(jTable1);
+        tbCliente.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(tbCliente);
 
         javax.swing.GroupLayout ClientesPanelLayout = new javax.swing.GroupLayout(ClientesPanel);
         ClientesPanel.setLayout(ClientesPanelLayout);
@@ -359,12 +480,17 @@ public class ClinicaFrame extends javax.swing.JFrame {
             .addGroup(ClientesPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(ClientesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSeparator2)
                     .addGroup(ClientesPanelLayout.createSequentialGroup()
-                        .addComponent(jBtAddNCliente)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 627, Short.MAX_VALUE))
-                .addContainerGap())
+                        .addGap(10, 10, 10)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(ClientesPanelLayout.createSequentialGroup()
+                        .addGroup(ClientesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jSeparator2)
+                            .addGroup(ClientesPanelLayout.createSequentialGroup()
+                                .addComponent(jBtAddNCliente)
+                                .addGap(0, 514, Short.MAX_VALUE)))
+                        .addContainerGap())))
         );
         ClientesPanelLayout.setVerticalGroup(
             ClientesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -373,8 +499,9 @@ public class ClinicaFrame extends javax.swing.JFrame {
                 .addComponent(jBtAddNCliente)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 416, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Clientes", ClientesPanel);
@@ -437,6 +564,14 @@ public class ClinicaFrame extends javax.swing.JFrame {
         jMenuItem4.setText("Fazer login como cliente");
         jMenu2.add(jMenuItem4);
 
+        btConnBanco.setText("Banco de Dados");
+        btConnBanco.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btConnBancoActionPerformed(evt);
+            }
+        });
+        jMenu2.add(btConnBanco);
+
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
@@ -456,7 +591,6 @@ public class ClinicaFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtAddConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtAddConsultaActionPerformed
-
         this.jConsultaDialog.setVisible(true);
 
     }//GEN-LAST:event_jBtAddConsultaActionPerformed
@@ -469,8 +603,15 @@ public class ClinicaFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jBtMarcarConsultaActionPerformed
 
     private void jBtAddClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtAddClienteActionPerformed
-        boolean AddCliente = _clinica.AddCliente(new Cliente(txtCpfCliente1.getText(), txtNomeCliente.getText(), txtTelCliente.getText()));
+        boolean AddCliente;
+        AddCliente = _clinica.AddCliente(new Cliente(txtCpfCliente1.getText(), txtNomeCliente.getText(), txtTelCliente.getText()));
         jLabel7.setText("" + AddCliente);
+        if (AddCliente) {
+            this.jClienteDialog.setVisible(false);
+        } else {
+            this.jLabel7.setText(" " + AddCliente);
+        };
+        attTableCliente();
     }//GEN-LAST:event_jBtAddClienteActionPerformed
 
     private void jBtAddNClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtAddNClienteActionPerformed
@@ -482,9 +623,34 @@ public class ClinicaFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        boolean AddMedico = _clinica.AddMedico(new Medico(txtCpfMedico.getText(),txtNomeMedico.getText(),txtRegistroMedico.getText()));
-        
+        boolean AddMedico = _clinica.AddMedico(new Medico(txtCpfMedico.getText(), txtNomeMedico.getText(), txtRegistroMedico.getText(), 2));
+        this.jTextField2.setText("" + AddMedico);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btConectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btConectActionPerformed
+        Connect.setPass(this.txtUser.getText(), this.txtPass.getText());
+        Connection conn = Connect.getConnection();
+        if (conn == null) {
+            connErro.setText("Erro na conexão com o banco de dados!");
+        } else {
+            this.jConnDialog.setVisible(false);
+            attTableCliente();
+        }
+    }//GEN-LAST:event_btConectActionPerformed
+
+    private void btConnBancoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btConnBancoActionPerformed
+        this.jConnDialog.setVisible(true);
+    }//GEN-LAST:event_btConnBancoActionPerformed
+    private void attTableCliente() {
+        DefaultTableModel model = new DefaultTableModel();
+        model.setColumnIdentifiers(Cliente.colunasCliente);
+        _clinica.Clientes = _clinica.MostrarClientes();
+        for (Cliente c : _clinica.Clientes) {
+            model.addRow(new Object[]{c.getCpf(), c.getNome(), c.getTelefone()});
+        }
+        this.tbCliente.setModel(model);
+        this.tbCliente.setFillsViewportHeight(true);
+    }
 
     /**
      * @param args the command line arguments
@@ -513,15 +679,14 @@ public class ClinicaFrame extends javax.swing.JFrame {
         }
         //</editor-fold>
         /* Create and display the form */
-        
-       
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
                 //new ClinicaFrame().setVisible(true);
                 ClinicaFrame clinica = new ClinicaFrame();
                 clinica.setVisible(true);
-
+                clinica.attTableCliente();
             }
         });
     }
@@ -531,6 +696,9 @@ public class ClinicaFrame extends javax.swing.JFrame {
     private javax.swing.JPanel ConsultasPanel;
     private javax.swing.JPanel GerenciaPanel;
     private javax.swing.JComboBox JCBEspecialidade;
+    private javax.swing.JButton btConect;
+    private javax.swing.JMenuItem btConnBanco;
+    private javax.swing.JLabel connErro;
     private javax.swing.JButton jBtAddCliente;
     private javax.swing.JButton jBtAddConsulta;
     private javax.swing.JButton jBtAddNCliente;
@@ -541,11 +709,15 @@ public class ClinicaFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JDialog jClienteDialog;
     private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JDialog jConnDialog;
     private javax.swing.JDialog jConsultaDialog;
     private javax.swing.JDialog jDentistaDialog;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -561,21 +733,25 @@ public class ClinicaFrame extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTable tbCliente;
     private javax.swing.JTextField txtCpfCliente;
     private javax.swing.JTextField txtCpfCliente1;
     private javax.swing.JTextField txtCpfMedico;
     private javax.swing.JTextField txtNomeCliente;
     private javax.swing.JTextField txtNomeMedico;
+    private javax.swing.JTextField txtPass;
     private javax.swing.JTextField txtRegMedic;
     private javax.swing.JTextField txtRegistroMedico;
     private javax.swing.JTextField txtTelCliente;
+    private javax.swing.JTextField txtUser;
     // End of variables declaration//GEN-END:variables
 }

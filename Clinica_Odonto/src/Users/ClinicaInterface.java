@@ -5,6 +5,8 @@
  */
 package Users;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -12,7 +14,7 @@ import java.util.Date;
  * @author LucasPc
  */
 public interface ClinicaInterface {
-    /*
+            /*
      CONSULTORIO ODONTOLÓGICO
      Cadastrar medicos, funcionario e clientes
      Clientes marcam e cancelam consultas
@@ -23,8 +25,7 @@ public interface ClinicaInterface {
      Relatorio- intervalo de tempo ordenado por especialidade
      */
 
-    public boolean AddCliente(Cliente _cliente);
-
+    public boolean AddCliente(Cliente _cliente) throws SQLException, InstantiationException, IllegalAccessException;
     public boolean AddMedico(Medico _medico);
 
     public boolean AddFuncionario(Funcionario funcionario);
@@ -38,6 +39,7 @@ public interface ClinicaInterface {
     public int MostrarConsultas();
 
     public int PesquisarConsulta(String cpf);
+    public ArrayList<Cliente> MostrarClientes() throws SQLException;
 
     public boolean PesquisarCliente(String cpf);
 }

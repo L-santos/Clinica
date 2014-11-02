@@ -1,5 +1,5 @@
 
-CREATE TABLE cliente( cpf VARCHAR (11) PRIMARY KEY, nome VARCHAR (50) NOT NULL)
+CREATE TABLE cliente( cpf VARCHAR (11) PRIMARY KEY, nome VARCHAR (50) NOT NULL, telefone varchar (15))
 
 CREATE TABLE medico( cpf VARCHAR (11) PRIMARY KEY, nome VARCHAR (50) NOT NULL,
 registro VARCHAR(20) NOT NULL , especialidade VARCHAR (50) NOT NULL )
