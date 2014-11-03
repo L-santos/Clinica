@@ -1,0 +1,9 @@
+Para fazer o banco funcionar:
+1 - No Netbeans na aba Serviços, selecione Databases - MySQL e conecte;
+        Botão direito em MySQL, selecione "Criar Banco de Dados". Nome: "clinica";
+
+2 - No package "Persistence" abra o arquivo ClinicaTemplate, no topo selecione o banco clinica e execute o SQL.
+
+3 - Apenas se o seu MySQL possuir senha:
+        Execute o programa.
+        No menu opções selecione Banco de Dados e insira as suas credenciais do MySQL.

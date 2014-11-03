@@ -5,6 +5,8 @@
  */
 package Users;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -31,13 +33,19 @@ public interface ClinicaInterface {
 
     public boolean MarcarConsulta(String cpf, String registro, Date data);
 
-    public int AlterarConsulta();
+    public boolean AlterarConsulta();
 
-    public int CancelarConsulta();
+    public boolean CancelarConsulta();
 
-    public int MostrarConsultas();
+    public ArrayList<Consulta> MostrarConsultas();
 
-    public int PesquisarConsulta(String cpf);
+    public ArrayList<Medico> MostrarMedicos();
 
-    public boolean PesquisarCliente(String cpf);
+    public ArrayList<Funcionario> MostrarFuncionarios();
+
+    public Consulta PesquisarConsulta(String cpf);
+
+    public ArrayList<Cliente> MostrarClientes() throws SQLException;
+
+    public Cliente PesquisarCliente(String cpf);
 }

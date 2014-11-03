@@ -22,11 +22,7 @@ public class Medico {
       this.registro = Registro_M;
       this.especialidade = Esp_M;
   }
-
-    public Medico(String text, String text0, String text1) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-  
+ 
   public String getCpf_M(){
       return this.cpfMedico;
   }
