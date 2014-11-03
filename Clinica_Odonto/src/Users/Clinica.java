@@ -26,7 +26,7 @@ public class Clinica implements ClinicaInterface {
 
     @Override
     public boolean MarcarConsulta(String cpf, String registro, Date data) {
-        if (this.PesquisarCliente(cpf) == true) {
+        if (this.PesquisarCliente(cpf) != null) {
             this.Consultas.add(new Consulta(cpf, registro, data));
             return true;
         } else {
@@ -35,38 +35,38 @@ public class Clinica implements ClinicaInterface {
     }
 
     @Override
-    public int AlterarConsulta() {
+    public boolean AlterarConsulta() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public int CancelarConsulta() {
+    public boolean CancelarConsulta() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public int MostrarConsultas() {
+    public ArrayList<Consulta> MostrarConsultas() {
         for (Consulta Consulta : this.Consultas) {
             System.out.println(Consulta.getIdConsulta() + " - " + Consulta.getCpfCliente());
             System.out.println(Consulta.getRegistroMedico());
             System.out.println(Consulta.getData());
         }
-        return 0;
+        return this.Consultas;
     }
 
     @Override
-    public int PesquisarConsulta(String cpf) {
+    public Consulta PesquisarConsulta(String cpf) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean PesquisarCliente(String cpf) {
-        for (Cliente Consulta : this.Clientes) {
-            if (cpf.equals(Consulta.getCpf())) {
-                return true;
+    public Cliente PesquisarCliente(String cpf) {
+        for (Cliente c : this.Clientes) {
+            if (cpf.equals(c.getCpf())) {
+                return c;
             }
         }
-        return false;
+        return null;
     }
 
     @Override
@@ -122,5 +122,15 @@ public class Clinica implements ClinicaInterface {
 
         }
         return arr;
+    }
+
+    @Override
+    public ArrayList<Medico> MostrarMedicos() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public ArrayList<Funcionario> MostrarFuncionarios() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

@@ -642,6 +642,7 @@ public class ClinicaFrame extends javax.swing.JFrame {
         this.jConnDialog.setVisible(true);
     }//GEN-LAST:event_btConnBancoActionPerformed
     private void attTableCliente() {
+        //Atualiza a tabela Cliente;
         DefaultTableModel model = new DefaultTableModel();
         model.setColumnIdentifiers(Cliente.colunasCliente);
         _clinica.Clientes = _clinica.MostrarClientes();
