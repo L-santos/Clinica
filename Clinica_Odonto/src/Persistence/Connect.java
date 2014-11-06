@@ -39,7 +39,7 @@ public class Connect {
     public static void setPass()
     { 
         user = "root";
-        pass = "";
+        pass =  " ";
     }
     public static Connection getConnection() {
         try {

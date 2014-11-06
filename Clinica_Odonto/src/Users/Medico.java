@@ -15,6 +15,7 @@ public class Medico {
    private String nome;
    private String registro;
    private int especialidade;
+   public static String colunasMedico[] = {"CPF", "NOME", "REGISTRO", "ESPECIALIDADE"};
    
   public Medico(String Cpf_M, String Nome_M, String Registro_M, int Esp_M){
       this.cpfMedico = Cpf_M;
@@ -22,15 +23,18 @@ public class Medico {
       this.registro = Registro_M;
       this.especialidade = Esp_M;
   }
- 
+ public Medico() {
+    }
   public String getCpf_M(){
       return this.cpfMedico;
   }
+
+    
   public void setCpf_M(String _Cpf_M){
       this.cpfMedico = _Cpf_M;
   }
   
-  public String setNome_M(){
+  public String getNome_M(){
       return this.nome;
   }
   public void setNome_M(String _Nome_M){
