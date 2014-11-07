@@ -5,12 +5,16 @@ class Funcionario {
     private String cpf_func;
     private String nome_func;
     private String tel_func;
-
+   public static String colunasFuncionario[] = {"CPF", "NOME", "TELEFONE"};
+   
   public Funcionario(String Cpf_f, String Nome_f, String Tel_f){
       this.cpf_func= Cpf_f;
       this.nome_func= Nome_f;
       this.tel_func=Tel_f;
   }
+
+    public Funcionario() {
+    }
   
   public String getCpf_f(){
     return this.cpf_func;

@@ -21,7 +21,7 @@ public class Clinica implements ClinicaInterface {
 
     public ArrayList<Cliente> Clientes = new ArrayList<>();
     ArrayList<Consulta> Consultas = new ArrayList<>();
-    ArrayList<Medico> Medicos = new ArrayList<>();
+    public ArrayList<Medico> Medicos = new ArrayList<>();
     ArrayList<Funcionario> Funcionario = new ArrayList<>();
 
     @Override
@@ -91,7 +91,22 @@ public class Clinica implements ClinicaInterface {
 
     @Override
     public boolean AddMedico(Medico medico) {
-        this.Medicos.add(medico);
+         this.Medicos.add(medico);
+        Connection conn = Connect.getConnection();
+        String sql = "INSERT INTO medico"
+                + "(cpf, nome, registro, especialidade)"
+                + "Values (?, ?, ?, ?)";
+        try(PreparedStatement stmt = conn.prepareStatement(sql);) {
+            stmt.setString(1, medico.getCpf_M());
+            stmt.setString(2, medico.getNome_M());
+            stmt.setString(3, medico.getRegistro_M());
+            stmt.setInt(4, medico.getEsp_M());
+            stmt.execute();
+            stmt.close();
+            conn.close();
+        } catch (SQLException e) {
+
+        }
         return true;
     }
 
@@ -126,7 +141,25 @@ public class Clinica implements ClinicaInterface {
 
     @Override
     public ArrayList<Medico> MostrarMedicos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         ArrayList<Medico> arr = new ArrayList<>();
+        Connection conn = Connect.getConnection();
+        //PreparedStatement stmt = null;
+        try(PreparedStatement stmt = conn.prepareStatement("select * from medico");) {
+            //stmt = conn.prepareStatement("select * from cliente");
+            Medico temp;
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                temp = new Medico();
+                temp.setCpf_M(rs.getString("cpf"));
+                temp.setNome_M(rs.getString("nome"));
+                temp.setRegistro_M(rs.getString("registro"));
+                temp.setEsp_M(rs.getInt("especialidade"));
+                arr.add(temp);
+            }
+        } catch (SQLException e) {
+
+        }
+        return arr;
     }
 
     @Override
