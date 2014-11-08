@@ -1,27 +1,31 @@
 
 package Users;
 
-import java.util.Date;
+import java.util.*;
 
 /**
  *
  * @author LucasPc
  */
 public class Consulta {
-
+    
+    public static String colunasConsulta[] = {"ID", "CLIENTE", "MEDICO", "DATA"};
     private String cpfCliente;
     private String registroMedico;
     private int idConsulta;
-    private static int countConsulta = 0;
     private Date data = new Date();
 
     public Consulta(String _cpf, String _registro, Date _data) {
         this.cpfCliente = _cpf;
         this.registroMedico = _registro;
         this.data = _data;
-        idConsulta = countConsulta++;
+        idConsulta = new Random().nextInt(1000);
     }
 
+    public Consulta() {
+    }
+
+    
     public String getCpfCliente() {
         return this.cpfCliente;
     }

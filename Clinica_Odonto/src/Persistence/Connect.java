@@ -17,8 +17,8 @@ import java.util.logging.Logger;
  */
 public class Connect {
 
-    private static String user;
-    private static String pass;
+    private static String user = "root";
+    private static String pass = "overkill00";
     
     /*
     public Connect() {
@@ -36,11 +36,7 @@ public class Connect {
         user = _user;
         pass = _pass;
     }
-    public static void setPass()
-    { 
-        user = "root";
-        pass =  " ";
-    }
+    
     public static Connection getConnection() {
         try {
             Class.forName("com.mysql.jdbc.Driver");

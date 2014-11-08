@@ -8,13 +8,8 @@ package Design;
 import Persistence.Connect;
 import Users.*;
 import java.sql.Connection;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -48,8 +43,8 @@ public class ClinicaFrame extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         txtRegMedic = new javax.swing.JTextField();
         jBtMarcarConsulta = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox();
-        jLabel6 = new javax.swing.JLabel();
+        cbSetRegMed = new javax.swing.JComboBox();
+        jLabel = new javax.swing.JLabel();
         jClienteDialog = new javax.swing.JDialog();
         jLabel3 = new javax.swing.JLabel();
         txtCpfCliente1 = new javax.swing.JTextField();
@@ -79,12 +74,6 @@ public class ClinicaFrame extends javax.swing.JFrame {
         btConect = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        ConsultasPanel = new javax.swing.JPanel();
-        jSeparator1 = new javax.swing.JSeparator();
-        jBtAddConsulta = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        jButton4 = new javax.swing.JButton();
-        jSeparator5 = new javax.swing.JSeparator();
         ClientesPanel = new javax.swing.JPanel();
         jSeparator2 = new javax.swing.JSeparator();
         jBtAddNCliente = new javax.swing.JButton();
@@ -99,6 +88,14 @@ public class ClinicaFrame extends javax.swing.JFrame {
         tbFuncionario = new javax.swing.JTable();
         jScrollPane3 = new javax.swing.JScrollPane();
         tbDentista = new javax.swing.JTable();
+        ConsultasPanel = new javax.swing.JPanel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jBtAddConsulta = new javax.swing.JButton();
+        jTextField1 = new javax.swing.JTextField();
+        jButton4 = new javax.swing.JButton();
+        jSeparator5 = new javax.swing.JSeparator();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tbConsulta = new javax.swing.JTable();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -121,9 +118,9 @@ public class ClinicaFrame extends javax.swing.JFrame {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbSetRegMed.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jLabel6.setText("Médico");
+        jLabel.setText("Médico");
 
         javax.swing.GroupLayout jConsultaDialogLayout = new javax.swing.GroupLayout(jConsultaDialog.getContentPane());
         jConsultaDialog.getContentPane().setLayout(jConsultaDialogLayout);
@@ -143,13 +140,13 @@ public class ClinicaFrame extends javax.swing.JFrame {
                                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addGap(20, 20, 20))
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jConsultaDialogLayout.createSequentialGroup()
-                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel)
                                     .addGap(18, 18, 18))))
                         .addGroup(jConsultaDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtCpfCliente)
+                            .addComponent(cbSetRegMed, 0, 182, Short.MAX_VALUE)
                             .addComponent(txtRegMedic)
-                            .addComponent(jComboBox1, 0, 156, Short.MAX_VALUE))))
-                .addContainerGap(156, Short.MAX_VALUE))
+                            .addComponent(txtCpfCliente))))
+                .addContainerGap(130, Short.MAX_VALUE))
         );
         jConsultaDialogLayout.setVerticalGroup(
             jConsultaDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -164,8 +161,8 @@ public class ClinicaFrame extends javax.swing.JFrame {
                     .addComponent(txtRegMedic, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jConsultaDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
+                    .addComponent(cbSetRegMed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel))
                 .addGap(27, 27, 27)
                 .addComponent(jBtMarcarConsulta)
                 .addContainerGap(134, Short.MAX_VALUE))
@@ -249,8 +246,6 @@ public class ClinicaFrame extends javax.swing.JFrame {
 
         jLabel11.setText("ESP");
 
-        JCBEspecialidade.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Implantodontista", "Ortodontista", "Periodontista", "Cirurgião" }));
-
         jBAddDentista.setText("Adicionar");
         jBAddDentista.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -275,9 +270,8 @@ public class ClinicaFrame extends javax.swing.JFrame {
                         .addGroup(jDentistaDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtNomeMedico, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtCpfMedico, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jDentistaDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(JCBEspecialidade, javax.swing.GroupLayout.Alignment.LEADING, 0, 87, Short.MAX_VALUE)
-                                .addComponent(txtRegistroMedico, javax.swing.GroupLayout.Alignment.LEADING))))
+                            .addComponent(txtRegistroMedico, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(JCBEspecialidade, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jDentistaDialogLayout.createSequentialGroup()
                         .addGap(11, 11, 11)
                         .addComponent(jBAddDentista)))
@@ -401,56 +395,6 @@ public class ClinicaFrame extends javax.swing.JFrame {
 
         jTabbedPane1.setBackground(java.awt.SystemColor.window);
 
-        ConsultasPanel.setBackground(new java.awt.Color(255, 255, 255));
-
-        jBtAddConsulta.setText("Adicionar Consulta");
-        jBtAddConsulta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBtAddConsultaActionPerformed(evt);
-            }
-        });
-
-        jButton4.setText("Pesquisar");
-
-        jSeparator5.setOrientation(javax.swing.SwingConstants.VERTICAL);
-
-        javax.swing.GroupLayout ConsultasPanelLayout = new javax.swing.GroupLayout(ConsultasPanel);
-        ConsultasPanel.setLayout(ConsultasPanelLayout);
-        ConsultasPanelLayout.setHorizontalGroup(
-            ConsultasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ConsultasPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(ConsultasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSeparator1)
-                    .addGroup(ConsultasPanelLayout.createSequentialGroup()
-                        .addComponent(jBtAddConsulta)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton4)
-                        .addGap(0, 154, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        ConsultasPanelLayout.setVerticalGroup(
-            ConsultasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ConsultasPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(ConsultasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(ConsultasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(ConsultasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton4))
-                        .addComponent(jSeparator5))
-                    .addComponent(jBtAddConsulta))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(433, Short.MAX_VALUE))
-        );
-
-        jTabbedPane1.addTab("Consultas", ConsultasPanel);
-
         ClientesPanel.setBackground(new java.awt.Color(255, 255, 255));
 
         jBtAddNCliente.setText("Adicionar Cliente");
@@ -500,7 +444,7 @@ public class ClinicaFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 416, Short.MAX_VALUE)
+                .addComponent(jScrollPane2)
                 .addContainerGap())
         );
 
@@ -583,15 +527,83 @@ public class ClinicaFrame extends javax.swing.JFrame {
                 .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(60, Short.MAX_VALUE))
             .addGroup(GerenciaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(GerenciaPanelLayout.createSequentialGroup()
                     .addGap(66, 66, 66)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(260, Short.MAX_VALUE)))
+                    .addContainerGap(285, Short.MAX_VALUE)))
         );
 
         jTabbedPane1.addTab("Gerenciar", GerenciaPanel);
+
+        ConsultasPanel.setBackground(new java.awt.Color(255, 255, 255));
+
+        jBtAddConsulta.setText("Adicionar Consulta");
+        jBtAddConsulta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtAddConsultaActionPerformed(evt);
+            }
+        });
+
+        jButton4.setText("Pesquisar");
+
+        jSeparator5.setOrientation(javax.swing.SwingConstants.VERTICAL);
+
+        tbConsulta.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane4.setViewportView(tbConsulta);
+
+        javax.swing.GroupLayout ConsultasPanelLayout = new javax.swing.GroupLayout(ConsultasPanel);
+        ConsultasPanel.setLayout(ConsultasPanelLayout);
+        ConsultasPanelLayout.setHorizontalGroup(
+            ConsultasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ConsultasPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(ConsultasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator1)
+                    .addGroup(ConsultasPanelLayout.createSequentialGroup()
+                        .addGroup(ConsultasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 586, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(ConsultasPanelLayout.createSequentialGroup()
+                                .addComponent(jBtAddConsulta)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton4)))
+                        .addGap(0, 41, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        ConsultasPanelLayout.setVerticalGroup(
+            ConsultasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ConsultasPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(ConsultasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(ConsultasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(ConsultasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton4))
+                        .addComponent(jSeparator5))
+                    .addComponent(jBtAddConsulta))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(61, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Consultas", ConsultasPanel);
 
         jMenu1.setText("File");
 
@@ -627,11 +639,13 @@ public class ClinicaFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -644,19 +658,22 @@ public class ClinicaFrame extends javax.swing.JFrame {
 
     private void jBtMarcarConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtMarcarConsultaActionPerformed
         Date d = new Date();
-        boolean MarcarConsulta = _clinica.MarcarConsulta(txtCpfCliente.getText(), txtRegMedic.getText(), d);
-        jLabel6.setText("" + MarcarConsulta);
+        int reg = cbSetRegMed.getSelectedIndex();
+        if(_clinica.MarcarConsulta(new Consulta(txtCpfCliente.getText(), _clinica.Medicos.get(reg).getRegistro_M(), d)))
+        {
+            this.jConsultaDialog.setVisible(false);
+        }
 
     }//GEN-LAST:event_jBtMarcarConsultaActionPerformed
 
     private void jBtAddClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtAddClienteActionPerformed
         boolean AddCliente;
-        AddCliente = _clinica.AddCliente(new Cliente(txtCpfCliente1.getText(), txtNomeCliente.getText(), txtTelCliente.getText()));
-        jLabel7.setText("" + AddCliente);
-        if (AddCliente) {
+        //AddCliente = _clinica.AddCliente(new Cliente(txtCpfCliente1.getText(), txtNomeCliente.getText(), txtTelCliente.getText()));
+        //jLabel7.setText("" + AddCliente);
+        if (_clinica.AddCliente(new Cliente(txtCpfCliente1.getText(), txtNomeCliente.getText(), txtTelCliente.getText()))) {
             this.jClienteDialog.setVisible(false);
         } else {
-            this.jLabel7.setText(" " + AddCliente);
+            //this.jLabel7.setText(" " + AddCliente);
         };
         attTableCliente();
     }//GEN-LAST:event_jBtAddClienteActionPerformed
@@ -670,11 +687,10 @@ public class ClinicaFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jBAddDentistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAddDentistaActionPerformed
-        //boolean AddMedico = _clinica.AddMedico(new Medico(txtCpfMedico.getText(), txtNomeMedico.getText(), txtRegistroMedico.getText(), 2));
-        //this.jTextField2.setText("" + AddMedico);
-        boolean AddMedico;
-        AddMedico = _clinica.AddMedico(new Medico(txtCpfMedico.getText(), txtNomeMedico.getText(), txtRegistroMedico.getText(),2));
-        if (AddMedico) {
+        int esp = JCBEspecialidade.getSelectedIndex();
+        esp++;
+        if (_clinica.AddMedico(new Medico(txtCpfMedico.getText(), txtNomeMedico.getText(),
+                txtRegistroMedico.getText(), esp))) {
             this.jDentistaDialog.setVisible(false);
         }
         attTableDentista();
@@ -705,20 +721,47 @@ public class ClinicaFrame extends javax.swing.JFrame {
         this.tbCliente.setModel(model);
         this.tbCliente.setFillsViewportHeight(true);
     }
-    private void attTableDentista(){
+
+    private void attTableDentista() {
         DefaultTableModel model = new DefaultTableModel();
         model.setColumnIdentifiers(Medico.colunasMedico);
         _clinica.Medicos = _clinica.MostrarMedicos();
         for (Medico m : _clinica.Medicos) {
-            model.addRow(new Object[]{m.getCpf_M(), m.getNome_M(), m.getRegistro_M(), m.getEsp_M()});
+            model.addRow(new Object[]{m.getCpf_M(), m.getNome_M(), m.getRegistro_M(), m.getStrEspecialidade()});
         }
         this.tbDentista.setModel(model);
         this.tbDentista.setFillsViewportHeight(true);
+        setComboBoxItems();
     }
 
-    /**
-     * @param args the command line arguments
-     */
+    private void attTableConsulta() {
+        DefaultTableModel model = new DefaultTableModel();
+        model.setColumnIdentifiers(Consulta.colunasConsulta);
+        _clinica.Consultas = _clinica.MostrarConsultas();
+        for (Consulta cs : _clinica.Consultas) {
+            model.addRow(new Object[]{cs.getIdConsulta(), cs.getCpfCliente(), cs.getRegistroMedico(), cs.getData()});
+        }
+        this.tbConsulta.setModel(model);
+        this.tbConsulta.setFillsViewportHeight(true);
+    }
+
+    private void setComboBoxItems() {
+
+        //seta o combobox da consulta
+        DefaultComboBoxModel model = new DefaultComboBoxModel();
+        for (Medico m : _clinica.Medicos) {
+            model.addElement(m.getNome_M()+", "+m.getStrEspecialidade());
+        }
+        this.cbSetRegMed.setModel(model);
+        
+        //seta o combobox do addmedico
+        DefaultComboBoxModel dmodel = new DefaultComboBoxModel();
+        for (String m: _clinica.getEspecialidades()){
+            dmodel.addElement(m);
+        }
+        this.JCBEspecialidade.setModel(dmodel);
+    }
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -750,8 +793,10 @@ public class ClinicaFrame extends javax.swing.JFrame {
                 //new ClinicaFrame().setVisible(true);
                 ClinicaFrame clinica = new ClinicaFrame();
                 clinica.setVisible(true);
-                clinica.attTableCliente();
                 clinica.attTableDentista();
+                clinica.attTableCliente();
+                clinica.attTableConsulta();
+                clinica.setComboBoxItems();
             }
         });
     }
@@ -763,6 +808,7 @@ public class ClinicaFrame extends javax.swing.JFrame {
     private javax.swing.JComboBox JCBEspecialidade;
     private javax.swing.JButton btConect;
     private javax.swing.JMenuItem btConnBanco;
+    private javax.swing.JComboBox cbSetRegMed;
     private javax.swing.JLabel connErro;
     private javax.swing.JButton jBAddDentista;
     private javax.swing.JButton jBtAddCliente;
@@ -773,10 +819,10 @@ public class ClinicaFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JDialog jClienteDialog;
-    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JDialog jConnDialog;
     private javax.swing.JDialog jConsultaDialog;
     private javax.swing.JDialog jDentistaDialog;
+    private javax.swing.JLabel jLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -787,7 +833,6 @@ public class ClinicaFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -802,6 +847,7 @@ public class ClinicaFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator4;
@@ -810,6 +856,7 @@ public class ClinicaFrame extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTable tbCliente;
+    private javax.swing.JTable tbConsulta;
     private javax.swing.JTable tbDentista;
     private javax.swing.JTable tbFuncionario;
     private javax.swing.JTextField txtCpfCliente;

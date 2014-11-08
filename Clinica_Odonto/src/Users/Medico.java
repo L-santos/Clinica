@@ -5,6 +5,13 @@
  */
 package Users;
 
+import Persistence.Connect;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
 /**
  *
  * @author LucasPc
@@ -15,6 +22,15 @@ public class Medico {
    private String nome;
    private String registro;
    private int especialidade;
+   private String strEspecialidade;
+
+    public String getStrEspecialidade() {
+        return strEspecialidade;
+    }
+
+    public void setStrEspecialidade(String strEspecialidade) {
+        this.strEspecialidade = strEspecialidade;
+    }
    public static String colunasMedico[] = {"CPF", "NOME", "REGISTRO", "ESPECIALIDADE"};
    
   public Medico(String Cpf_M, String Nome_M, String Registro_M, int Esp_M){
@@ -46,10 +62,27 @@ public class Medico {
   public void setRegistro_M(String _Registro_M){
       this.registro = _Registro_M;
   }
+  
+  /*public  ArrayList<String> getEsp_M(){
+     ArrayList<String> esp = new ArrayList<>();
+     Connection conn = Connect.getConnection();
+     try(PreparedStatement stmt = conn.prepareStatement("select nome from especialidade");){
+         ResultSet rs = stmt.executeQuery();
+         while(rs.next()){
+             esp.add(rs.getString("nome"));
+         }
+         
+     }catch(SQLException e){
+         
+     }
+     return esp;
+  }*/
+  
   public int getEsp_M(){
-      return this.especialidade;
+        return especialidade;
   }
-  public void setEsp_M(int _Esp_M){
-      this.especialidade = _Esp_M;
-  }
+
+    public void setEsp_M(int _Esp_M) {
+        this.especialidade = _Esp_M;
+    }
 }

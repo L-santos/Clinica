@@ -31,7 +31,7 @@ public interface ClinicaInterface {
 
     public boolean AddFuncionario(Funcionario funcionario);
 
-    public boolean MarcarConsulta(String cpf, String registro, Date data);
+    public boolean MarcarConsulta(Consulta consulta);
 
     public boolean AlterarConsulta();
 
