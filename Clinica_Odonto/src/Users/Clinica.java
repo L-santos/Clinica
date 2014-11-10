@@ -12,6 +12,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -38,41 +40,73 @@ public class Clinica implements ClinicaInterface {
     public ArrayList<Consulta> MostrarConsultas() {
         ArrayList<Consulta> arr = new ArrayList<>();
         Connection conn = Connect.getConnection();
-        try(PreparedStatement stmt = conn.prepareStatement("select c.id, c.cpfCliente, m.nome, c.dataConsulta"
+        try (PreparedStatement stmt = conn.prepareStatement("select *"
                 + " from consulta as c, medico as m "
-                + "where c.registroMedico = m.registro")){
+                + "where c.registroMedico = m.registro")) {
             Consulta temp;
             ResultSet rs = stmt.executeQuery();
-            while(rs.next())
-            {
+            while (rs.next()) {
                 temp = new Consulta();
                 temp.setIdConsulta(rs.getInt("c.id"));
                 temp.setCpfCliente(rs.getString("c.cpfCliente"));
-                temp.setRegistroMedico(rs.getString("m.nome"));
+                temp.dadosMedico.setRegistro_M(rs.getString("registroMedico"));
+                temp.dadosMedico.setNome_M(rs.getString("m.nome"));
+                temp.dadosMedico.setStrEspecialidade(rs.getString("m.especialidade"));
                 temp.setData(rs.getDate("c.dataConsulta"));
                 arr.add(temp);
             }
-            
-        }catch(SQLException e){
-            
+
+        } catch (SQLException e) {
+
         }
-        
+
         return arr;
     }
 
     @Override
-    public Consulta PesquisarConsulta(String cpf) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public ArrayList<Consulta> PesquisarConsulta(String cpf) {
+        ArrayList<Consulta> arr = new ArrayList<>();
+        Connection conn = Connect.getConnection();
+        String sql = "SELECT * FROM consulta as c, medico as m "
+                + "WHERE c.cpfCliente = ? AND c.registroMedico = m.registro";
+        try (PreparedStatement stmt = conn.prepareStatement(sql);) {
+            stmt.setString(1, cpf);
+            Consulta temp;
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                temp = new Consulta();
+                temp.setCpfCliente(rs.getString("c.cpfCliente"));
+                temp.setIdConsulta(rs.getInt("c.id"));
+                temp.dadosMedico.setRegistro_M(rs.getString("registroMedico"));
+                temp.dadosMedico.setNome_M(rs.getString("m.nome"));
+                temp.dadosMedico.setStrEspecialidade(rs.getString("m.especialidade"));
+                temp.setData(rs.getDate("c.dataConsulta"));
+                arr.add(temp);
+            }
+             conn.close();
+        } catch (SQLException e) {
+
+        }
+
+        return arr;
     }
 
     @Override
-    public Cliente PesquisarCliente(String cpf) {
-        for (Cliente c : this.Clientes) {
-            if (cpf.equals(c.getCpf())) {
-                return c;
+    public boolean PesquisarCliente(String cpf) {
+        Connection conn = Connect.getConnection();
+        String sql = "select cpf from cliente";
+        try (PreparedStatement stmt = conn.prepareStatement(sql);) {
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                String temp = rs.getString("cpf");
+                if (cpf.equals(temp)) {
+                    return true;
+                }
             }
+        } catch (SQLException ex) {
+            Logger.getLogger(Clinica.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return null;
+        return false;
     }
 
     @Override
@@ -97,28 +131,28 @@ public class Clinica implements ClinicaInterface {
 
     @Override
     public boolean MarcarConsulta(Consulta consulta) {
-           Date myDate = new Date();
-       // if (this.PesquisarCliente(consulta.getCpfCliente()) != null) {
-            Connection conn = Connect.getConnection();
-            String sql = "INSERT INTO consulta "
-                    + "(id, cpfCliente, registroMedico, dataConsulta)"
-                    + "Values (?, ? , ?, ?)";
-            try (PreparedStatement stmt = conn.prepareStatement(sql);) {
-                stmt.setInt(1, consulta.getIdConsulta());
-                stmt.setString(2, consulta.getCpfCliente());
-                stmt.setString(3, consulta.getRegistroMedico());
-                stmt.setDate(4, new java.sql.Date(myDate.getTime()));
-                stmt.execute();
-                this.Consultas.add(consulta);
-                stmt.close();
-                conn.close();
-            } catch (SQLException e) {
-                System.err.println(e);
-            }
-            return true;
+        Date myDate = new Date();
+        // if (this.PesquisarCliente(consulta.getCpfCliente()) != null) {
+        Connection conn = Connect.getConnection();
+        String sql = "INSERT INTO consulta "
+                + "(id, cpfCliente, registroMedico, dataConsulta)"
+                + "Values (?, ? , ?, ?)";
+        try (PreparedStatement stmt = conn.prepareStatement(sql);) {
+            stmt.setInt(1, consulta.getIdConsulta());
+            stmt.setString(2, consulta.getCpfCliente());
+            stmt.setString(3, consulta.dadosMedico.getRegistro_M());
+            stmt.setDate(4, new java.sql.Date(myDate.getTime()));
+            stmt.execute();
+            this.Consultas.add(consulta);
+            stmt.close();
+            conn.close();
+        } catch (SQLException e) {
+            System.err.println(e);
+        }
+        return true;
         /* else {
-            return false;
-        }*/
+         return false;
+         }*/
     }
 
     @Override

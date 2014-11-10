@@ -43,9 +43,9 @@ public interface ClinicaInterface {
 
     public ArrayList<Funcionario> MostrarFuncionarios();
 
-    public Consulta PesquisarConsulta(String cpf);
+    public ArrayList<Consulta> PesquisarConsulta(String cpf);
 
     public ArrayList<Cliente> MostrarClientes() throws SQLException;
 
-    public Cliente PesquisarCliente(String cpf);
+    public boolean PesquisarCliente(String cpf);
 }
