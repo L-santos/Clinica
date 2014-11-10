@@ -31,7 +31,7 @@ public class Medico {
     public void setStrEspecialidade(String strEspecialidade) {
         this.strEspecialidade = strEspecialidade;
     }
-   public static String colunasMedico[] = {"CPF", "NOME", "REGISTRO", "ESPECIALIDADE"};
+   public static String colunasMedico[] = {"Cpf", "Nome", "Registro", "Especialidade"};
    
   public Medico(String Cpf_M, String Nome_M, String Registro_M, int Esp_M){
       this.cpfMedico = Cpf_M;
