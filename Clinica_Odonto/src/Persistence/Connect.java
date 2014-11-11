@@ -18,7 +18,7 @@ import java.util.logging.Logger;
 public class Connect {
 
     private static String user = "root";
-    private static String pass = "overkill00";
+    private static String pass = "";
     
     /*
     public Connect() {
