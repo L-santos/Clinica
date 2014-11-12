@@ -138,8 +138,8 @@ public class Clinica implements ClinicaInterface {
                 + "(id, cpfCliente, registroMedico, dataConsulta)"
                 + "Values (?, ? , ?, ?)";
         try (PreparedStatement stmt = conn.prepareStatement(sql);) {
-            stmt.setInt(1, consulta.getIdConsulta());
             stmt.setString(2, consulta.getCpfCliente());
+            stmt.setInt(1, consulta.getIdConsulta());
             stmt.setString(3, consulta.dadosMedico.getRegistro_M());
             stmt.setDate(4, new java.sql.Date(myDate.getTime()));
             stmt.execute();
@@ -249,4 +249,36 @@ public class Clinica implements ClinicaInterface {
         }
         return esp;
     }
+
+    public boolean EditarClienteData(int index, String item, String value) {
+        
+        String sql = null;
+        item = item.toLowerCase();
+        switch(item){
+            case "cpf": sql = "UPDATE cliente SET cpf = ?"
+                +" Where cpf = ?";break;
+            case "nome": sql = "UPDATE cliente SET nome = ?"
+                +" Where cpf = ?";break;
+            case "tel": sql = "UPDATE cliente SET telefone = ?"
+                +" Where cpf = ?";break;
+            
+        }
+        String cpf = this.Clientes.get(index).getCpf();
+        Connection conn = Connect.getConnection();
+        //String sql = "UPDATE cliente SET (?) = (?)"
+                //+" Where cpf = (?)";
+        try (PreparedStatement stmt = conn.prepareStatement(sql);){
+            //stmt.setString(1, item);
+            stmt.setString(1, value);
+            stmt.setString(2, cpf);
+            stmt.execute();
+        }catch(SQLException e){
+            System.err.print(e);
+            return false;
+        }
+        return true;
+    }
 }
+
+
+

@@ -280,9 +280,9 @@ public class ClinicaF extends javax.swing.JFrame {
     private void jbLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLoginActionPerformed
         if (new Clinica().PesquisarCliente(txtCpfCliente.getText()) == true) {
             this.cliente_panel._cliente.setCpf(txtCpfCliente.getText());
+            this.cliente_panel.atualizarClientePanel();
             changePanel(pAnterior, "ClientePanel");
             pAnterior = "ClientePanel";
-            this.cliente_panel.attTbConsulta1();
             jClienteLogin.setVisible(false);
         } else {
             jOpErrorCliente.setVisible(true);

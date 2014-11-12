@@ -26,8 +26,7 @@ public class ClientePanel extends javax.swing.JPanel {
     public ClientePanel() {
         initComponents();
         _cliente = new Cliente();
-        this.jlCpfCliente.setText(_cliente.getCpf());
-        this.cbSetRegMed.setModel(DesignTools.getMedEspModel());
+        atualizarClientePanel();
     }
 
     /**
@@ -170,7 +169,11 @@ public class ClientePanel extends javax.swing.JPanel {
     private void jBtAddConsulta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtAddConsulta1ActionPerformed
         this.jConsultaDialog.setVisible(true);
     }//GEN-LAST:event_jBtAddConsulta1ActionPerformed
-
+    public void atualizarClientePanel(){
+        this.jlCpfCliente.setText(_cliente.getCpf());
+        this.cbSetRegMed.setModel(DesignTools.getMedEspModel());
+        attTbConsulta1();
+    }
     private void jBtMarcarConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtMarcarConsultaActionPerformed
         Date d = new Date();
         int reg = cbSetRegMed.getSelectedIndex();

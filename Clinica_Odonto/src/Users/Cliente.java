@@ -12,7 +12,7 @@ public class Cliente {
     private String nome;
     private String telefone;
     public ArrayList<Consulta> consultas = new ArrayList<>();
-    public static String colunasCliente[] = {"Cpf", "Nome", "Tel"};
+    public static String[] colunasCliente = {"Cpf", "Nome", "Tel"};
     public static String colConsultasCliente[] = {"ID", "Data", "Medico"};
     public Cliente() {
 
