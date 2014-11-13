@@ -6,10 +6,8 @@
 package Utiliarios;
 
 import Users.*;
-import java.util.Iterator;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -17,6 +15,12 @@ import javax.swing.table.DefaultTableModel;
  */
 public class DesignTools {
 
+    public static String colunasFuncionario[] = {"CPF", "NOME", "TELEFONE"};
+    public static String colunasMedico[] = {"Cpf", "Nome", "Registro", "Especialidade"};
+    public static String colunasConsulta[] = {"Id", "Cliente", "Medico", "Data"};
+    public static String[] colunasCliente = {"Cpf", "Nome", "Tel"};
+    public static String colConsultasCliente[] = {"ID", "Data", "Medico"};
+    
     public static DefaultComboBoxModel getMedEspModel() {
 
         //seta o combobox da consulta

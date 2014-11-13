@@ -1,11 +1,12 @@
 
 package Users;
 
-class Funcionario {
+public class Funcionario {
     private String cpf_func;
     private String nome_func;
     private String tel_func;
-   public static String colunasFuncionario[] = {"CPF", "NOME", "TELEFONE"};
+    public static String uniqueKey = "Cpf";
+    public static String colunasFuncionario[] = {"Cpf", "Nome", "Telefone"};
    
   public Funcionario(String Cpf_f, String Nome_f, String Tel_f){
       this.cpf_func= Cpf_f;

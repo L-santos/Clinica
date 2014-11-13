@@ -83,7 +83,7 @@ public class Clinica implements ClinicaInterface {
                 temp.setData(rs.getDate("c.dataConsulta"));
                 arr.add(temp);
             }
-             conn.close();
+            conn.close();
         } catch (SQLException e) {
 
         }
@@ -138,8 +138,8 @@ public class Clinica implements ClinicaInterface {
                 + "(id, cpfCliente, registroMedico, dataConsulta)"
                 + "Values (?, ? , ?, ?)";
         try (PreparedStatement stmt = conn.prepareStatement(sql);) {
-            stmt.setInt(1, consulta.getIdConsulta());
             stmt.setString(2, consulta.getCpfCliente());
+            stmt.setInt(1, consulta.getIdConsulta());
             stmt.setString(3, consulta.dadosMedico.getRegistro_M());
             stmt.setDate(4, new java.sql.Date(myDate.getTime()));
             stmt.execute();
@@ -249,4 +249,159 @@ public class Clinica implements ClinicaInterface {
         }
         return esp;
     }
+
+    public boolean EditarClienteData(String index, String item, String value) {
+
+        String sql = null;
+        item = item.toLowerCase();
+        switch (item) {
+            case "cpf":
+                sql = "UPDATE cliente SET cpf = ?"
+                        + " Where cpf = ?";
+                break;
+            case "nome":
+                sql = "UPDATE cliente SET nome = ?"
+                        + " Where cpf = ?";
+                break;
+            case "tel":
+                sql = "UPDATE cliente SET telefone = ?"
+                        + " Where cpf = ?";
+                break;
+
+        }
+        //String cpf = this.Clientes.get(index).getCpf();
+        Connection conn = Connect.getConnection();
+        //String sql = "UPDATE cliente SET (?) = (?)"
+        //+" Where cpf = (?)";
+        try (PreparedStatement stmt = conn.prepareStatement(sql);) {
+            //stmt.setString(1, item);
+            stmt.setString(1, value);
+            stmt.setString(2, index);
+            stmt.execute();
+        } catch (SQLException e) {
+            System.err.print(e);
+            return false;
+        }
+        return true;
+    }
+
+    public boolean ExcluirCliente(String cpf) {
+        Connection conn = Connect.getConnection();
+        try (PreparedStatement stmt = conn.prepareStatement("DELETE FROM cliente WHERE cpf = ?");) {
+            stmt.setString(1, cpf);
+            stmt.execute();
+        } catch (SQLException e) {
+            System.err.print(e);
+            return false;
+        }
+        return true;
+    }
+
+    public boolean EditarConsulta(String id, String item, String text) {
+        String sql = null;
+        item = item.toLowerCase();
+        switch (item) {
+            case "id":
+                sql = "UPDATE consulta SET id = ?"
+                        + " Where id = ?";
+                break;
+            case "cliente":
+                sql = "UPDATE consulta SET cpfCliente = ?"
+                        + " Where id = ?";
+                break;
+            case "medico":
+                sql = "UPDATE consulta SET registroMedico = ?"
+                        + " Where id = ?";
+                break;
+            case "data":
+                sql = "UPDATE cliente SET dataConsulta = ?"
+                        + " Where id = ?";
+                break;
+
+        }
+        Connection conn = Connect.getConnection();
+        try (PreparedStatement stmt = conn.prepareStatement(sql);) {
+            stmt.setString(1, text);
+            stmt.setInt(2, Integer.parseInt(id));
+            stmt.execute();
+        } catch (SQLException e) {
+            System.err.print(e);
+            return false;
+        }
+        return true;
+    }
+
+    public boolean ExcluirConsulta(String id) {
+        Connection conn = Connect.getConnection();
+        try (PreparedStatement stmt = conn.prepareStatement("DELETE FROM consulta WHERE id = ?");) {
+            stmt.setInt(1, Integer.parseInt(id));
+            stmt.execute();
+        } catch (SQLException e) {
+            System.err.print(e);
+            return false;
+        }
+        return true;
+    }
+
+    public boolean EditarMedico(String registro, String item, String text) {
+        String sql = null;
+        item = item.toLowerCase();
+        switch (item) {
+            case "cpf":
+                sql = "UPDATE medico SET cpf = ?"
+                        + " Where registro = ?";
+                break;
+            case "nome":
+                sql = "UPDATE medico SET nome = ?"
+                        + " Where registro = ?";
+                break;
+            case "registro":
+                sql = "UPDATE consulta SET registro = ?"
+                        + " Where registro= ?";
+                break;
+            case "data":
+                sql = "UPDATE cliente SET dataConsulta = ?"
+                        + " Where registro = ?";
+                break;
+
+        }
+        Connection conn = Connect.getConnection();
+        try (PreparedStatement stmt = conn.prepareStatement(sql);) {
+            stmt.setString(1, text);
+            stmt.setString(2, registro);
+            stmt.execute();
+        } catch (SQLException e) {
+            System.err.print(e);
+            return false;
+        }
+        return true;
+    }
+
+    /*public boolean ExcluirConsulta(String id) {
+     Connection conn = Connect.getConnection();
+     try (PreparedStatement stmt = conn.prepareStatement("DELETE FROM consulta WHERE id = ?");) {
+     stmt.setInt(1, Integer.parseInt(id));
+     stmt.execute();
+     } catch (SQLException e) {
+     System.err.print(e);
+     return false;
+     }
+     return true;
+     }*/
+    public boolean ExcluirDentista(String registro) {
+        Connection conn = Connect.getConnection();
+        try (PreparedStatement stmt = conn.prepareStatement("DELETE FROM medico WHERE registro = ?");) {
+            stmt.setString(1, registro);
+            stmt.execute();
+        } catch (SQLException e) {
+            System.err.print(e);
+            return false;
+        }
+        return true;
+    }
+
+    public boolean EditarFuncionario(String valueAt, String selectedItem, String text) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

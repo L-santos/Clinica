@@ -5,13 +5,15 @@
  */
 package Design;
 
-import Persistence.Connect;
 import Users.*;
 import Utiliarios.DesignTools;
-import java.sql.Connection;
+import java.awt.Component;
 import java.util.*;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -62,6 +64,26 @@ public class AdmPanel extends javax.swing.JPanel {
         jLabel11 = new javax.swing.JLabel();
         JCBEspecialidade = new javax.swing.JComboBox();
         jBAddDentista = new javax.swing.JButton();
+        jClienteDialog1 = new javax.swing.JDialog();
+        jLabel6 = new javax.swing.JLabel();
+        txtCpfCliente2 = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        txtNomeCliente1 = new javax.swing.JTextField();
+        jBtAddCliente1 = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
+        txtTelCliente1 = new javax.swing.JTextField();
+        jDialog1 = new javax.swing.JDialog();
+        txtEditCliente = new javax.swing.JTextField();
+        jBSaveEditCliente = new javax.swing.JButton();
+        jLabel13 = new javax.swing.JLabel();
+        jCBClientePropriedade = new javax.swing.JComboBox();
+        jLabel14 = new javax.swing.JLabel();
+        jPopupMenu = new javax.swing.JPopupMenu();
+        popMEditar = new javax.swing.JMenuItem();
+        popMExcluir = new javax.swing.JMenuItem();
+        jPopupMenuConsulta = new javax.swing.JPopupMenu();
+        popMEditarConsulta = new javax.swing.JMenuItem();
+        popMExcluirConsulta = new javax.swing.JMenuItem();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         ConsultasPanel = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -271,10 +293,139 @@ public class AdmPanel extends javax.swing.JPanel {
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
+        jClienteDialog1.setTitle("Novo Cliente");
+        jClienteDialog1.setMinimumSize(new java.awt.Dimension(334, 189));
+        jClienteDialog1.setResizable(false);
+
+        jLabel6.setText("CPF");
+
+        jLabel7.setText("Nome");
+
+        jBtAddCliente1.setText("Adicionar");
+        jBtAddCliente1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtAddCliente1ActionPerformed(evt);
+            }
+        });
+
+        jLabel12.setText("Telefone");
+
+        javax.swing.GroupLayout jClienteDialog1Layout = new javax.swing.GroupLayout(jClienteDialog1.getContentPane());
+        jClienteDialog1.getContentPane().setLayout(jClienteDialog1Layout);
+        jClienteDialog1Layout.setHorizontalGroup(
+            jClienteDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jClienteDialog1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jClienteDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jClienteDialog1Layout.createSequentialGroup()
+                        .addGroup(jClienteDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel12))
+                        .addGap(50, 50, 50)
+                        .addGroup(jClienteDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtTelCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNomeCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCpfCliente2, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jBtAddCliente1))
+                .addContainerGap(80, Short.MAX_VALUE))
+        );
+        jClienteDialog1Layout.setVerticalGroup(
+            jClienteDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jClienteDialog1Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addGroup(jClienteDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtCpfCliente2)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jClienteDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(txtNomeCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jClienteDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(txtTelCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jBtAddCliente1)
+                .addContainerGap(24, Short.MAX_VALUE))
+        );
+
+        jDialog1.setTitle("Editar Cliente");
+        jDialog1.setBounds(new java.awt.Rectangle(443, 4, 4, 4));
+        jDialog1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jDialog1.setMinimumSize(new java.awt.Dimension(314, 128));
+        jDialog1.setResizable(false);
+        jDialog1.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                jDialog1WindowClosed(evt);
+            }
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                jDialog1WindowClosing(evt);
+            }
+        });
+        jDialog1.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jDialog1.getContentPane().add(txtEditCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 30, 258, -1));
+
+        jBSaveEditCliente.setText("Salvar");
+        jBSaveEditCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBSaveEditClienteActionPerformed(evt);
+            }
+        });
+        jDialog1.getContentPane().add(jBSaveEditCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 50, -1, -1));
+        jDialog1.getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 24, -1, 20));
+
+        jCBClientePropriedade.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jDialog1.getContentPane().add(jCBClientePropriedade, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 56, -1, -1));
+
+        jLabel14.setText("Editar");
+        jDialog1.getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 130, -1));
+
+        jPopupMenu.setAlignmentX(2.0F);
+        jPopupMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jPopupMenu.setBounds(0, 0, 200, 200);
+
+        popMEditar.setText("Editar");
+        popMEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                popMEditarActionPerformed(evt);
+            }
+        });
+        jPopupMenu.add(popMEditar);
+
+        popMExcluir.setText("Excluir");
+        popMExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                popMExcluirActionPerformed(evt);
+            }
+        });
+        jPopupMenu.add(popMExcluir);
+
+        jPopupMenuConsulta.setAlignmentX(2.0F);
+        jPopupMenuConsulta.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jPopupMenu.setBounds(0, 0, 200, 200);
+
+        popMEditarConsulta.setText("Editar");
+        popMEditarConsulta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                popMEditarConsultaActionPerformed(evt);
+            }
+        });
+        jPopupMenuConsulta.add(popMEditarConsulta);
+
+        popMExcluirConsulta.setText("Excluir");
+        popMExcluirConsulta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                popMExcluirConsultaActionPerformed(evt);
+            }
+        });
+        jPopupMenuConsulta.add(popMExcluirConsulta);
+
         setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         setMinimumSize(new java.awt.Dimension(462, 564));
         setPreferredSize(new java.awt.Dimension(462, 564));
 
+        jTabbedPane1.setName("tbCliente"); // NOI18N
         jTabbedPane1.setPreferredSize(new java.awt.Dimension(442, 542));
 
         ConsultasPanel.setBackground(new java.awt.Color(255, 255, 255));
@@ -301,6 +452,9 @@ public class AdmPanel extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tbConsulta.setToolTipText("");
+        tbConsulta.setComponentPopupMenu(jPopupMenu);
+        tbConsulta.setName("tbConsulta"); // NOI18N
         jScrollPane4.setViewportView(tbConsulta);
 
         javax.swing.GroupLayout ConsultasPanelLayout = new javax.swing.GroupLayout(ConsultasPanel);
@@ -351,6 +505,7 @@ public class AdmPanel extends javax.swing.JPanel {
             }
         });
 
+        tbCliente.setAutoCreateRowSorter(true);
         tbCliente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -362,6 +517,10 @@ public class AdmPanel extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tbCliente.setComponentPopupMenu(jPopupMenu);
+        tbCliente.setGridColor(new java.awt.Color(51, 255, 51));
+        tbCliente.setName("tbCliente"); // NOI18N
+        tbCliente.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane2.setViewportView(tbCliente);
 
         javax.swing.GroupLayout ClientesPanelLayout = new javax.swing.GroupLayout(ClientesPanel);
@@ -375,7 +534,7 @@ public class AdmPanel extends javax.swing.JPanel {
                     .addGroup(ClientesPanelLayout.createSequentialGroup()
                         .addComponent(jBtAddNCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 423, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE))
                 .addContainerGap())
         );
         ClientesPanelLayout.setVerticalGroup(
@@ -427,6 +586,8 @@ public class AdmPanel extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tbDentista.setComponentPopupMenu(jPopupMenu);
+        tbDentista.setName("tbDentista"); // NOI18N
         jScrollPane3.setViewportView(tbDentista);
 
         javax.swing.GroupLayout GerenciaPanelLayout = new javax.swing.GroupLayout(GerenciaPanel);
@@ -476,7 +637,7 @@ public class AdmPanel extends javax.swing.JPanel {
         if (_clinica.MarcarConsulta(new Consulta(txtCpfCliente.getText(), _clinica.Medicos.get(reg).getRegistro_M(), d))) {
             this.jConsultaDialog.setVisible(false);
         }
-        attTableConsulta();
+        att();
     }//GEN-LAST:event_jBtMarcarConsultaActionPerformed
 
     private void jBtAddClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtAddClienteActionPerformed
@@ -487,8 +648,9 @@ public class AdmPanel extends javax.swing.JPanel {
             this.jClienteDialog.setVisible(false);
         } else {
             //this.jLabel7.setText(" " + AddCliente);
-        };
-        attTableCliente();
+        }
+        att();
+
     }//GEN-LAST:event_jBtAddClienteActionPerformed
 
     private void jBAddDentistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAddDentistaActionPerformed
@@ -498,12 +660,12 @@ public class AdmPanel extends javax.swing.JPanel {
                 txtRegistroMedico.getText(), esp))) {
             this.jDentistaDialog.setVisible(false);
         }
-        attTableDentista();
+        att();
     }//GEN-LAST:event_jBAddDentistaActionPerformed
     public void attTableCliente() {
         //Atualiza a tabela Cliente;
         DefaultTableModel model = new DefaultTableModel();
-        model.setColumnIdentifiers(Cliente.colunasCliente);
+        model.setColumnIdentifiers(Cliente.getColunasCliente());
         _clinica.Clientes = _clinica.MostrarClientes();
         for (Cliente c : _clinica.Clientes) {
             model.addRow(new Object[]{c.getCpf(), c.getNome(), c.getTelefone()});
@@ -517,7 +679,7 @@ public class AdmPanel extends javax.swing.JPanel {
         model.setColumnIdentifiers(Medico.colunasMedico);
         _clinica.Medicos = _clinica.MostrarMedicos();
         for (Medico m : _clinica.Medicos) {
-            model.addRow(new Object[]{m.getCpf_M(), m.getNome_M(), m.getRegistro_M(), m.getStrEspecialidade()});
+            model.addRow(new Object[]{m.getRegistro_M(), m.getNome_M(), m.getCpf_M(), m.getStrEspecialidade()});
         }
         this.tbDentista.setModel(model);
         this.tbDentista.setFillsViewportHeight(true);
@@ -526,7 +688,7 @@ public class AdmPanel extends javax.swing.JPanel {
 
     private void attTableConsulta() {
         DefaultTableModel model = new DefaultTableModel();
-        model.setColumnIdentifiers(Consulta.colunasConsulta);
+        model.setColumnIdentifiers(Consulta.getColunasConsulta());
         _clinica.Consultas = _clinica.MostrarConsultas();
         for (Consulta cs : _clinica.Consultas) {
             model.addRow(new Object[]{cs.getIdConsulta(), cs.getCpfCliente(),
@@ -543,8 +705,6 @@ public class AdmPanel extends javax.swing.JPanel {
         attTableDentista();
         this.JCBEspecialidade.setModel(DesignTools.getEspModel());
         this.cbSetRegMed.setModel(DesignTools.getMedEspModel());
-
-        //setComboBoxItems();
     }
     private void jBtAddConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtAddConsultaActionPerformed
         this.jConsultaDialog.setVisible(true);
@@ -554,9 +714,232 @@ public class AdmPanel extends javax.swing.JPanel {
         this.jClienteDialog.setVisible(true);
     }//GEN-LAST:event_jBtAddNClienteActionPerformed
 
+
     private void jbAddDentistadgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAddDentistadgActionPerformed
         this.jDentistaDialog.setVisible(true);
     }//GEN-LAST:event_jbAddDentistadgActionPerformed
+
+    private void jBtAddCliente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtAddCliente1ActionPerformed
+
+    }//GEN-LAST:event_jBtAddCliente1ActionPerformed
+
+    /*
+    private void jBSaveEditClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSaveEditClienteActionPerformed
+        String text = txtEditCliente.getText();
+     int selectedRow = this.tbCliente.getSelectedRow();
+     int selectedIndex = this.jCBClientePropriedade.getSelectedIndex();
+     TableModel model = this.tbCliente.getModel();
+     String valueAt = (String) model.getValueAt(selectedRow, selectedIndex);
+     String valueAt1 = (String) this.tbCliente.getValueAt(selectedRow, 0);
+     System.out.println(valueAt);
+     String selectedItem = (String) this.jCBClientePropriedade.getSelectedItem();
+     if (!"".equals(text)) {
+     if (_clinica.EditarClienteData(valueAt1, selectedItem, text)) {
+     //this.jDialog1.setVisible(false);
+     this.txtEditCliente.setText("");
+     } else {
+     JOptionPane.showMessageDialog(this,
+     "Ocorreu um erro!",
+     "Erro",
+     JOptionPane.ERROR_MESSAGE);
+     }
+     } else {
+     this.jDialog1.setVisible(false);
+     }
+     attTableCliente();
+    }//GEN-LAST:event_jBSaveEditClienteActionPerformed
+    /*
+    private void popMEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_popMEditarActionPerformed
+        int selectedColumn = this.tbCliente.getSelectedColumn();
+     if (selectedColumn == -1) {
+     //JOptionPane message = new JOptionPane();
+     JOptionPane.showMessageDialog(this,
+     "Nenhuma coluna selecionada!",
+     "Erro",
+     JOptionPane.WARNING_MESSAGE);
+     } else {
+     this.jDialog1.setVisible(true);
+     this.txtEditCliente.setText("");
+     this.jCBClientePropriedade.setSelectedIndex(selectedColumn);
+     }
+    }//GEN-LAST:event_popMEditarActionPerformed
+    */
+    
+    private void jBSaveEditClienteActionPerformed(java.awt.event.ActionEvent evt) {
+        JTable table = (JTable) this.jPopupMenu.getInvoker();
+        String name = table.getName();
+        String text = txtEditCliente.getText();
+        int selectedRow = table.getSelectedRow();
+        //get cpf
+        String valueAt = table.getValueAt(selectedRow, 0).toString();
+        //get propriedade
+        String selectedItem = (String) this.jCBClientePropriedade.getSelectedItem();
+        if (!"".equals(text)) {
+            if (name != null) {
+                switch (name) {
+                    case "tbCliente":
+                        if (_clinica.EditarClienteData(valueAt, selectedItem, text)) {
+                            this.txtEditCliente.setText("");
+                            showMessage(1);
+                            if (Cliente.uniqueKey.equals(selectedItem)) {
+                                this.jDialog1.setVisible(false);
+                                this.jDialog1WindowClosing(null);
+                            }
+                        } else {
+                            showMessage(2);
+                        }
+                        break;
+                    case "tbConsulta":
+                        if (_clinica.EditarConsulta(valueAt, selectedItem, text)) {
+                            this.txtEditCliente.setText("");
+                            showMessage(1);
+                            if (Consulta.uniqueKey.equals(selectedItem)) {
+                                this.jDialog1.setVisible(false);
+                                this.jDialog1WindowClosing(null);
+                            }
+                        } else {
+                            showMessage(2);
+                        }
+                        break;
+                    case "tbDentista":
+                        if (_clinica.EditarMedico(valueAt, selectedItem, text)) {
+                            this.txtEditCliente.setText("");
+                            showMessage(1);
+                            if (Medico.uniqueKey.equals(selectedItem)) {
+                                this.jDialog1.setVisible(false);
+                                this.jDialog1WindowClosing(null);
+                            }
+                        } else {
+                            showMessage(2);
+                        }
+                        break;
+                    case "tbFuncionario":
+                        if (_clinica.EditarFuncionario(valueAt, selectedItem, text)) {
+                            this.txtEditCliente.setText("");
+                            showMessage(1);
+                            if (Funcionario.uniqueKey.equals(selectedItem)) {
+                                this.jDialog1.setVisible(false);
+                                this.jDialog1WindowClosing(null);
+                            }
+                        } else {
+                            showMessage(2);
+                        }
+                        break;
+                }
+            }
+        } else {
+            this.jDialog1.setVisible(false);
+        }
+    }
+
+    private void popMEditarActionPerformed(java.awt.event.ActionEvent evt) {
+        JTable table = (JTable) this.jPopupMenu.getInvoker();
+        String name = table.getName();
+        DefaultComboBoxModel model = null;
+        int selectedColumn = table.getSelectedColumn();
+        if (selectedColumn == -1) {
+            JOptionPane.showMessageDialog(this,
+                    "Nenhuma coluna selecionada!",
+                    "Erro",
+                    JOptionPane.WARNING_MESSAGE);
+        } else {
+            switch (name) {
+                case "tbConsulta":
+                    model = new DefaultComboBoxModel(DesignTools.colunasConsulta);
+                    break;
+                case "tbCliente":
+                    model = new DefaultComboBoxModel(DesignTools.colunasCliente);
+                    break;
+                case "tbDentista":
+                    model = new DefaultComboBoxModel(DesignTools.colunasMedico);
+                    break;
+                case "tbFuncionario":
+                    model = new DefaultComboBoxModel(DesignTools.colunasFuncionario);
+                    break;
+            }
+            this.jDialog1.setVisible(true);
+            this.txtEditCliente.setText("");
+            this.jCBClientePropriedade.setModel(model);
+            this.jCBClientePropriedade.setSelectedIndex(selectedColumn);
+        }
+    }
+    
+    /*
+    private void popMExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_popMExcluirActionPerformed
+        String selectedCpf = (String) this.tbCliente.getValueAt(this.tbCliente.getSelectedRow(), 0);
+     if (this.tbCliente.getSelectedRow() != -1) {
+     int n = JOptionPane.showConfirmDialog(
+     this,
+     "Deseja excluir o item selecionado?",
+     "Excluir",
+     JOptionPane.YES_NO_OPTION);
+     if (n == 0) {
+     _clinica.ExcluirCliente(selectedCpf);
+     att();
+     }
+     }
+    }//GEN-LAST:event_popMExcluirActionPerformed
+    */
+
+    private void popMExcluirActionPerformed(java.awt.event.ActionEvent evt) {
+        JTable table = (JTable) this.jPopupMenu.getInvoker();
+        if (table.getSelectedRow() != -1) {
+            int n = JOptionPane.showConfirmDialog(
+                    this,
+                    "Deseja excluir o item selecionado?",
+                    "Excluir",
+                    JOptionPane.YES_NO_OPTION);
+            if (n == 0) {
+                String name = table.getName();
+                String valueAt = table.getValueAt(table.getSelectedRow(), 0).toString();
+                switch (name) {
+                    case "tbConsulta":
+                        _clinica.ExcluirConsulta(valueAt);
+                        break;
+                    case "tbCliente":
+                        _clinica.ExcluirCliente(valueAt);
+                        break;
+                    case "tbDentista":
+                        _clinica.ExcluirDentista(valueAt);
+                }
+                att();
+            }
+        }
+    }
+
+    private void popMEditarConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_popMEditarConsultaActionPerformed
+        Component invoker = this.jPopupMenuConsulta.getInvoker();
+        JTable table = (JTable) this.jPopupMenuConsulta.getInvoker();
+        String name = table.getName();
+        int selectedColumn = table.getSelectedColumn();
+        int selectedRow = table.getSelectedRow();
+    }//GEN-LAST:event_popMEditarConsultaActionPerformed
+
+    private void popMExcluirConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_popMExcluirConsultaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_popMExcluirConsultaActionPerformed
+
+    private void jDialog1WindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_jDialog1WindowClosing
+        att();
+    }//GEN-LAST:event_jDialog1WindowClosing
+
+    private void jDialog1WindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_jDialog1WindowClosed
+        att();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jDialog1WindowClosed
+    private void showMessage(int i) {
+        switch (i) {
+            case 1:
+                JOptionPane.showMessageDialog(this, "Salvo!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
+                break;
+            case 2:
+                JOptionPane.showMessageDialog(this,
+                        "Ocorreu um erro!",
+                        "Erro",
+                        JOptionPane.ERROR_MESSAGE);
+                break;
+        }
+    }
     /*
      */
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -566,25 +949,37 @@ public class AdmPanel extends javax.swing.JPanel {
     private javax.swing.JComboBox JCBEspecialidade;
     private javax.swing.JComboBox cbSetRegMed;
     private javax.swing.JButton jBAddDentista;
+    private javax.swing.JButton jBSaveEditCliente;
     private javax.swing.JButton jBtAddCliente;
+    private javax.swing.JButton jBtAddCliente1;
     private javax.swing.JButton jBtAddConsulta;
     private javax.swing.JButton jBtAddNCliente;
     private javax.swing.JButton jBtMarcarConsulta;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JComboBox jCBClientePropriedade;
     private javax.swing.JDialog jClienteDialog;
+    private javax.swing.JDialog jClienteDialog1;
     private javax.swing.JDialog jConsultaDialog;
     private javax.swing.JDialog jDentistaDialog;
+    private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPopupMenu jPopupMenu;
+    private javax.swing.JPopupMenu jPopupMenuConsulta;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -597,18 +992,26 @@ public class AdmPanel extends javax.swing.JPanel {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JButton jbAddDentistadg;
+    private javax.swing.JMenuItem popMEditar;
+    private javax.swing.JMenuItem popMEditarConsulta;
+    private javax.swing.JMenuItem popMExcluir;
+    private javax.swing.JMenuItem popMExcluirConsulta;
     private javax.swing.JTable tbCliente;
     private javax.swing.JTable tbConsulta;
     private javax.swing.JTable tbDentista;
     private javax.swing.JTable tbFuncionario;
     private javax.swing.JTextField txtCpfCliente;
     private javax.swing.JTextField txtCpfCliente1;
+    private javax.swing.JTextField txtCpfCliente2;
     private javax.swing.JTextField txtCpfMedico;
+    private javax.swing.JTextField txtEditCliente;
     private javax.swing.JTextField txtNomeCliente;
+    private javax.swing.JTextField txtNomeCliente1;
     private javax.swing.JTextField txtNomeMedico;
     private javax.swing.JTextField txtRegMedic;
     private javax.swing.JTextField txtRegistroMedico;
     private javax.swing.JTextField txtTelCliente;
+    private javax.swing.JTextField txtTelCliente1;
     // End of variables declaration//GEN-END:variables
 
 }

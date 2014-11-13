@@ -5,13 +5,6 @@
  */
 package Users;
 
-import Persistence.Connect;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-
 /**
  *
  * @author LucasPc
@@ -23,6 +16,7 @@ public class Medico {
    private String registro;
    private int especialidade;
    private String strEspecialidade;
+   public static String uniqueKey = "Registro";
 
     public String getStrEspecialidade() {
         return strEspecialidade;
@@ -31,7 +25,7 @@ public class Medico {
     public void setStrEspecialidade(String strEspecialidade) {
         this.strEspecialidade = strEspecialidade;
     }
-   public static String colunasMedico[] = {"Cpf", "Nome", "Registro", "Especialidade"};
+   public static String colunasMedico[] = { "Registro", "Cpf", "Nome", "Especialidade"};
    
   public Medico(String Cpf_M, String Nome_M, String Registro_M, int Esp_M){
       this.cpfMedico = Cpf_M;

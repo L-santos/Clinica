@@ -8,18 +8,24 @@ import java.util.ArrayList;
  */
 public class Cliente {
 
+    public static String[] getColunasCliente() {
+        return colunasCliente;
+    }
+
+    public static String[] getColConsultasCliente() {
+        return colConsultasCliente;
+    }
+
     private String cpf;
     private String nome;
     private String telefone;
     public ArrayList<Consulta> consultas = new ArrayList<>();
-    public static String colunasCliente[] = {"Cpf", "Nome", "Tel"};
-    public static String colConsultasCliente[] = {"ID", "Data", "Medico"};
+    public static String uniqueKey = "Cpf";
+    public static String[] colunasCliente = {"Cpf", "Nome", "Tel"};
+    private static String colConsultasCliente[] = {"ID", "Data", "Medico"};
+
     public Cliente() {
 
-    }
-
-    public static String[] getColunasCliente() {
-        return colunasCliente;
     }
 
     public static void setColunasCliente(String[] colunasCliente) {
@@ -30,7 +36,6 @@ public class Cliente {
         return new Clinica().PesquisarConsulta(this.getCpf());
     }
 
-    
     public Cliente(String Cpf, String Nome, String Tel) {
         this.cpf = Cpf;
         this.nome = Nome;
