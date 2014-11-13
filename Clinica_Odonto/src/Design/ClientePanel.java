@@ -26,7 +26,7 @@ public class ClientePanel extends javax.swing.JPanel {
     public ClientePanel() {
         initComponents();
         _cliente = new Cliente();
-        atualizarClientePanel();
+        //atualizarClientePanel();
     }
 
     /**

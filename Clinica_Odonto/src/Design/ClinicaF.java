@@ -11,6 +11,7 @@ import Users.Clinica;
 import java.sql.Connection;
 import java.util.HashMap;
 import java.util.Map;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -30,7 +31,8 @@ public class ClinicaF extends javax.swing.JFrame {
 
     public ClinicaF() {
         initComponents();
-        //login_panel = new LoginPanel();
+        String s = (String)JOptionPane.showInputDialog(this, "Senha MySQL root");
+        Connect.setPass("root", s);
         adm_panel = new AdmPanel();
         cliente_panel = new ClientePanel();
         lista_panels = new HashMap();

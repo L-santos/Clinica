@@ -13,6 +13,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -763,6 +764,7 @@ public class AdmPanel extends javax.swing.JPanel {
      }
     }//GEN-LAST:event_popMEditarActionPerformed
     */
+    
     private void jBSaveEditClienteActionPerformed(java.awt.event.ActionEvent evt) {
         JTable table = (JTable) this.jPopupMenu.getInvoker();
         String name = table.getName();
@@ -861,6 +863,7 @@ public class AdmPanel extends javax.swing.JPanel {
             this.jCBClientePropriedade.setSelectedIndex(selectedColumn);
         }
     }
+    
     /*
     private void popMExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_popMExcluirActionPerformed
         String selectedCpf = (String) this.tbCliente.getValueAt(this.tbCliente.getSelectedRow(), 0);
