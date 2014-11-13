@@ -9,6 +9,10 @@ import java.util.*;
 public class Consulta {
 
     public static String colunasConsulta[] = {"Id", "Cliente", "Medico", "Data"};
+    public static String uniqueKey = "Id";
+    public static String[] getColunasConsulta() {
+        return colunasConsulta;
+    }
     private String cpfCliente;
     public Medico dadosMedico;
     private int idConsulta;

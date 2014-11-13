@@ -8,8 +8,6 @@ package Persistence;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -18,7 +16,7 @@ import java.util.logging.Logger;
 public class Connect {
 
     private static String user = "root";
-    private static String pass = "overkill00";
+    private static String pass = "";
     
     /*
     public Connect() {

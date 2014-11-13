@@ -185,7 +185,7 @@ public class ClientePanel extends javax.swing.JPanel {
 
     void attTbConsulta1() {
         DefaultTableModel model = new DefaultTableModel();
-        model.setColumnIdentifiers(Cliente.colConsultasCliente);
+        model.setColumnIdentifiers(Cliente.getColConsultasCliente());
         _cliente.consultas = _cliente.getConsultas();
        
         for (Consulta consulta : _cliente.consultas) {
