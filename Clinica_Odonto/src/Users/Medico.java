@@ -56,22 +56,7 @@ public class Medico {
   public void setRegistro_M(String _Registro_M){
       this.registro = _Registro_M;
   }
-  
-  /*public  ArrayList<String> getEsp_M(){
-     ArrayList<String> esp = new ArrayList<>();
-     Connection conn = Connect.getConnection();
-     try(PreparedStatement stmt = conn.prepareStatement("select nome from especialidade");){
-         ResultSet rs = stmt.executeQuery();
-         while(rs.next()){
-             esp.add(rs.getString("nome"));
-         }
-         
-     }catch(SQLException e){
-         
-     }
-     return esp;
-  }*/
-  
+ 
   public int getEsp_M(){
         return especialidade;
   }

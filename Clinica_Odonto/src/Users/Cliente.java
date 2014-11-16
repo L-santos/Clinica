@@ -65,4 +65,8 @@ public class Cliente {
     public void setTelefone(String _telefone) {
         this.telefone = _telefone;
     }
+
+    public void deletarConsulta(String valueAt) {
+        new Clinica().ExcluirConsulta(valueAt);
+    }
 }

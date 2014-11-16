@@ -6,14 +6,15 @@
 package Design;
 
 import Users.*;
-import Utiliarios.DesignTools;
+import Utiliarios.Tools;
 import java.awt.Component;
-import java.util.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 
 /**
  *
@@ -42,10 +43,10 @@ public class AdmPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         txtCpfCliente = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        txtRegMedic = new javax.swing.JTextField();
         jBtMarcarConsulta = new javax.swing.JButton();
         cbSetRegMed = new javax.swing.JComboBox();
         jLabel = new javax.swing.JLabel();
+        jToolBar1 = new javax.swing.JToolBar();
         jClienteDialog = new javax.swing.JDialog();
         jLabel3 = new javax.swing.JLabel();
         txtCpfCliente1 = new javax.swing.JTextField();
@@ -84,6 +85,9 @@ public class AdmPanel extends javax.swing.JPanel {
         jPopupMenuConsulta = new javax.swing.JPopupMenu();
         popMEditarConsulta = new javax.swing.JMenuItem();
         popMExcluirConsulta = new javax.swing.JMenuItem();
+        jCBDia = new javax.swing.JComboBox();
+        jCBMes = new javax.swing.JComboBox();
+        jCBAno = new javax.swing.JComboBox();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         ConsultasPanel = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -111,6 +115,11 @@ public class AdmPanel extends javax.swing.JPanel {
         jConsultaDialog.setTitle("Nova Consulta");
         jConsultaDialog.setMinimumSize(new java.awt.Dimension(334, 194));
         jConsultaDialog.setResizable(false);
+        jConsultaDialog.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                jConsultaDialogComponentShown(evt);
+            }
+        });
 
         jLabel1.setText("CPF");
 
@@ -127,6 +136,9 @@ public class AdmPanel extends javax.swing.JPanel {
 
         jLabel.setText("Médico");
 
+        jToolBar1.setBorder(null);
+        jToolBar1.setRollover(true);
+
         javax.swing.GroupLayout jConsultaDialogLayout = new javax.swing.GroupLayout(jConsultaDialog.getContentPane());
         jConsultaDialog.getContentPane().setLayout(jConsultaDialogLayout);
         jConsultaDialogLayout.setHorizontalGroup(
@@ -138,15 +150,14 @@ public class AdmPanel extends javax.swing.JPanel {
                     .addGroup(jConsultaDialogLayout.createSequentialGroup()
                         .addGroup(jConsultaDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel))
-                        .addGap(55, 55, 55)
-                        .addGroup(jConsultaDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cbSetRegMed, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jConsultaDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtRegMedic, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
-                                .addComponent(txtCpfCliente)))))
-                .addContainerGap(42, Short.MAX_VALUE))
+                            .addComponent(jLabel)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(49, 49, 49)
+                        .addGroup(jConsultaDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(cbSetRegMed, 0, 182, Short.MAX_VALUE)
+                            .addComponent(txtCpfCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
+                            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
         jConsultaDialogLayout.setVerticalGroup(
             jConsultaDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -156,14 +167,14 @@ public class AdmPanel extends javax.swing.JPanel {
                     .addComponent(jLabel1)
                     .addComponent(txtCpfCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jConsultaDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtRegMedic, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                .addGroup(jConsultaDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbSetRegMed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jConsultaDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel)
-                    .addComponent(cbSetRegMed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(jLabel2)
+                    .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(13, 13, 13)
                 .addComponent(jBtMarcarConsulta)
                 .addContainerGap(32, Short.MAX_VALUE))
         );
@@ -421,9 +432,20 @@ public class AdmPanel extends javax.swing.JPanel {
         });
         jPopupMenuConsulta.add(popMExcluirConsulta);
 
+        jCBDia.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11", " " }));
+
+        jCBMes.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jCBAno.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         setMinimumSize(new java.awt.Dimension(462, 564));
         setPreferredSize(new java.awt.Dimension(462, 564));
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
 
         jTabbedPane1.setName("tbCliente"); // NOI18N
         jTabbedPane1.setPreferredSize(new java.awt.Dimension(442, 542));
@@ -630,27 +652,32 @@ public class AdmPanel extends javax.swing.JPanel {
 
         add(jTabbedPane1);
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    
     private void jBtMarcarConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtMarcarConsultaActionPerformed
-        Date d = new Date();
+        Calendar d = Calendar.getInstance();
+        int i = (int)jCBAno.getSelectedItem();
+        d.set(i , jCBMes.getSelectedIndex(), jCBDia.getSelectedIndex()+1);
         int reg = cbSetRegMed.getSelectedIndex();
-        if (_clinica.MarcarConsulta(new Consulta(txtCpfCliente.getText(), _clinica.Medicos.get(reg).getRegistro_M(), d))) {
+        if (_clinica.MarcarConsulta(new Consulta(txtCpfCliente.getText(), _clinica.Medicos.get(reg).getRegistro_M(), 
+                d))) {
             this.jConsultaDialog.setVisible(false);
+            Tools.showMessage(1);
+        }else {
+            Tools.showMessage(2);
         }
         att();
     }//GEN-LAST:event_jBtMarcarConsultaActionPerformed
 
     private void jBtAddClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtAddClienteActionPerformed
         boolean AddCliente;
-        //AddCliente = _clinica.AddCliente(new Cliente(txtCpfCliente1.getText(), txtNomeCliente.getText(), txtTelCliente.getText()));
-        //jLabel7.setText("" + AddCliente);
         if (_clinica.AddCliente(new Cliente(txtCpfCliente1.getText(), txtNomeCliente.getText(), txtTelCliente.getText()))) {
             this.jClienteDialog.setVisible(false);
+            Tools.showMessage(1);
         } else {
-            //this.jLabel7.setText(" " + AddCliente);
+            Tools.showMessage(2);
         }
         att();
-
     }//GEN-LAST:event_jBtAddClienteActionPerformed
 
     private void jBAddDentistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAddDentistaActionPerformed
@@ -659,6 +686,9 @@ public class AdmPanel extends javax.swing.JPanel {
         if (_clinica.AddMedico(new Medico(txtCpfMedico.getText(), txtNomeMedico.getText(),
                 txtRegistroMedico.getText(), esp))) {
             this.jDentistaDialog.setVisible(false);
+            Tools.showMessage(1);
+        } else {
+            Tools.showMessage(2);
         }
         att();
     }//GEN-LAST:event_jBAddDentistaActionPerformed
@@ -689,11 +719,12 @@ public class AdmPanel extends javax.swing.JPanel {
     private void attTableConsulta() {
         DefaultTableModel model = new DefaultTableModel();
         model.setColumnIdentifiers(Consulta.getColunasConsulta());
+        SimpleDateFormat formataData = new SimpleDateFormat("dd-MM-yyyy");
         _clinica.Consultas = _clinica.MostrarConsultas();
         for (Consulta cs : _clinica.Consultas) {
             model.addRow(new Object[]{cs.getIdConsulta(), cs.getCpfCliente(),
                 " " + cs.dadosMedico.getRegistro_M() + " (" + cs.dadosMedico.getNome_M() + ")",
-                cs.getData()});
+                formataData.format(cs.getData().getTime())});
         }
         this.tbConsulta.setModel(model);
         this.tbConsulta.setFillsViewportHeight(true);
@@ -703,8 +734,8 @@ public class AdmPanel extends javax.swing.JPanel {
         attTableCliente();
         attTableConsulta();
         attTableDentista();
-        this.JCBEspecialidade.setModel(DesignTools.getEspModel());
-        this.cbSetRegMed.setModel(DesignTools.getMedEspModel());
+        this.JCBEspecialidade.setModel(Tools.getEspModel());
+        this.cbSetRegMed.setModel(Tools.getMedEspModel());
     }
     private void jBtAddConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtAddConsultaActionPerformed
         this.jConsultaDialog.setVisible(true);
@@ -752,7 +783,7 @@ public class AdmPanel extends javax.swing.JPanel {
     private void popMEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_popMEditarActionPerformed
         int selectedColumn = this.tbCliente.getSelectedColumn();
      if (selectedColumn == -1) {
-     //JOptionPane message = new JOptionPane();
+     JOptionPane message = new JOptionPane();
      JOptionPane.showMessageDialog(this,
      "Nenhuma coluna selecionada!",
      "Erro",
@@ -764,7 +795,6 @@ public class AdmPanel extends javax.swing.JPanel {
      }
     }//GEN-LAST:event_popMEditarActionPerformed
     */
-    
     private void jBSaveEditClienteActionPerformed(java.awt.event.ActionEvent evt) {
         JTable table = (JTable) this.jPopupMenu.getInvoker();
         String name = table.getName();
@@ -780,49 +810,49 @@ public class AdmPanel extends javax.swing.JPanel {
                     case "tbCliente":
                         if (_clinica.EditarClienteData(valueAt, selectedItem, text)) {
                             this.txtEditCliente.setText("");
-                            showMessage(1);
+                            Tools.showMessage(1);
                             if (Cliente.uniqueKey.equals(selectedItem)) {
                                 this.jDialog1.setVisible(false);
                                 this.jDialog1WindowClosing(null);
                             }
                         } else {
-                            showMessage(2);
+                            Tools.showMessage(2);
                         }
                         break;
                     case "tbConsulta":
                         if (_clinica.EditarConsulta(valueAt, selectedItem, text)) {
                             this.txtEditCliente.setText("");
-                            showMessage(1);
+                            Tools.showMessage(1);
                             if (Consulta.uniqueKey.equals(selectedItem)) {
                                 this.jDialog1.setVisible(false);
                                 this.jDialog1WindowClosing(null);
                             }
                         } else {
-                            showMessage(2);
+                            Tools.showMessage(2);
                         }
                         break;
                     case "tbDentista":
                         if (_clinica.EditarMedico(valueAt, selectedItem, text)) {
                             this.txtEditCliente.setText("");
-                            showMessage(1);
+                            Tools.showMessage(1);
                             if (Medico.uniqueKey.equals(selectedItem)) {
                                 this.jDialog1.setVisible(false);
                                 this.jDialog1WindowClosing(null);
                             }
                         } else {
-                            showMessage(2);
+                            Tools.showMessage(2);
                         }
                         break;
                     case "tbFuncionario":
                         if (_clinica.EditarFuncionario(valueAt, selectedItem, text)) {
                             this.txtEditCliente.setText("");
-                            showMessage(1);
+                            Tools.showMessage(1);
                             if (Funcionario.uniqueKey.equals(selectedItem)) {
                                 this.jDialog1.setVisible(false);
                                 this.jDialog1WindowClosing(null);
                             }
                         } else {
-                            showMessage(2);
+                            Tools.showMessage(2);
                         }
                         break;
                 }
@@ -845,16 +875,16 @@ public class AdmPanel extends javax.swing.JPanel {
         } else {
             switch (name) {
                 case "tbConsulta":
-                    model = new DefaultComboBoxModel(DesignTools.colunasConsulta);
+                    model = new DefaultComboBoxModel(Tools.colunasConsulta);
                     break;
                 case "tbCliente":
-                    model = new DefaultComboBoxModel(DesignTools.colunasCliente);
+                    model = new DefaultComboBoxModel(Tools.colunasCliente);
                     break;
                 case "tbDentista":
-                    model = new DefaultComboBoxModel(DesignTools.colunasMedico);
+                    model = new DefaultComboBoxModel(Tools.colunasMedico);
                     break;
                 case "tbFuncionario":
-                    model = new DefaultComboBoxModel(DesignTools.colunasFuncionario);
+                    model = new DefaultComboBoxModel(Tools.colunasFuncionario);
                     break;
             }
             this.jDialog1.setVisible(true);
@@ -863,7 +893,7 @@ public class AdmPanel extends javax.swing.JPanel {
             this.jCBClientePropriedade.setSelectedIndex(selectedColumn);
         }
     }
-    
+
     /*
     private void popMExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_popMExcluirActionPerformed
         String selectedCpf = (String) this.tbCliente.getValueAt(this.tbCliente.getSelectedRow(), 0);
@@ -879,8 +909,7 @@ public class AdmPanel extends javax.swing.JPanel {
      }
      }
     }//GEN-LAST:event_popMExcluirActionPerformed
-    */
-
+   */
     private void popMExcluirActionPerformed(java.awt.event.ActionEvent evt) {
         JTable table = (JTable) this.jPopupMenu.getInvoker();
         if (table.getSelectedRow() != -1) {
@@ -905,6 +934,7 @@ public class AdmPanel extends javax.swing.JPanel {
                 att();
             }
         }
+
     }
 
     private void popMEditarConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_popMEditarConsultaActionPerformed
@@ -927,19 +957,20 @@ public class AdmPanel extends javax.swing.JPanel {
         att();
         // TODO add your handling code here:
     }//GEN-LAST:event_jDialog1WindowClosed
-    private void showMessage(int i) {
-        switch (i) {
-            case 1:
-                JOptionPane.showMessageDialog(this, "Salvo!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
-                break;
-            case 2:
-                JOptionPane.showMessageDialog(this,
-                        "Ocorreu um erro!",
-                        "Erro",
-                        JOptionPane.ERROR_MESSAGE);
-                break;
-        }
-    }
+
+    private void jConsultaDialogComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jConsultaDialogComponentShown
+       this.jCBDia.setModel(Tools.getDiaModel());
+        this.jCBAno.setModel(Tools.getAnoModel());
+        this.jCBMes.setModel(Tools.getMesModel(0));
+        this.jToolBar1.add(this.jCBDia);
+        this.jToolBar1.add(this.jCBMes);
+        this.jToolBar1.add(this.jCBAno);
+    }//GEN-LAST:event_jConsultaDialogComponentShown
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        att();
+    }//GEN-LAST:event_formComponentShown
+
     /*
      */
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -957,7 +988,10 @@ public class AdmPanel extends javax.swing.JPanel {
     private javax.swing.JButton jBtMarcarConsulta;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JComboBox jCBAno;
     private javax.swing.JComboBox jCBClientePropriedade;
+    private javax.swing.JComboBox jCBDia;
+    private javax.swing.JComboBox jCBMes;
     private javax.swing.JDialog jClienteDialog;
     private javax.swing.JDialog jClienteDialog1;
     private javax.swing.JDialog jConsultaDialog;
@@ -991,6 +1025,7 @@ public class AdmPanel extends javax.swing.JPanel {
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JToolBar jToolBar1;
     private javax.swing.JButton jbAddDentistadg;
     private javax.swing.JMenuItem popMEditar;
     private javax.swing.JMenuItem popMEditarConsulta;
@@ -1008,7 +1043,6 @@ public class AdmPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtNomeCliente;
     private javax.swing.JTextField txtNomeCliente1;
     private javax.swing.JTextField txtNomeMedico;
-    private javax.swing.JTextField txtRegMedic;
     private javax.swing.JTextField txtRegistroMedico;
     private javax.swing.JTextField txtTelCliente;
     private javax.swing.JTextField txtTelCliente1;
