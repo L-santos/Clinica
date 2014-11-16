@@ -16,9 +16,9 @@ public class Consulta {
     private String cpfCliente;
     public Medico dadosMedico;
     private int idConsulta;
-    private Date data = new Date();
+    private Calendar data;
 
-    public Consulta(String _cpf, String _registro, Date _data) {
+    public Consulta(String _cpf, String _registro, Calendar _data) {
         dadosMedico = new Medico();
         this.cpfCliente = _cpf;
         this.dadosMedico.setRegistro_M(_registro);
@@ -46,11 +46,11 @@ public class Consulta {
         this.idConsulta = _id;
     }
 
-    public Date getData() {
+    public Calendar getData() {
         return this.data;
     }
 
-    public void setData(Date _data) {
+    public void setData(Calendar _data) {
         this.data = _data;
     }
 }

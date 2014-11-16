@@ -18,17 +18,6 @@ public class Connect {
     private static String user = "root";
     private static String pass = "";
     
-    /*
-    public Connect() {
-        user = "root";
-        pass = "";
-    }
-   
-    public Connect(String _user, String _pass){
-        user = _user;
-        pass = _pass;
-    }*/
-    
     public static void setPass(String _user, String _pass)
     { 
         user = _user;
@@ -38,15 +27,16 @@ public class Connect {
     public static Connection getConnection() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-        } catch (ClassNotFoundException ex) {
-            //Logger.getLogger(Connect.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException e) {
+            System.err.print(e);
              return null;
         }
     
         try {
             return DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/clinica?zeroDateTimeBehavior=convertToNull", user, pass);
-        } catch (SQLException ex) {
+        } catch (SQLException e) {
+            System.err.print(e);
             return null;
         }
    }

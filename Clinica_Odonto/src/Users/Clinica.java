@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -47,17 +48,18 @@ public class Clinica implements ClinicaInterface {
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 temp = new Consulta();
+                Calendar cal = Calendar.getInstance();
+                cal.setTime(rs.getDate("c.dataConsulta"));
                 temp.setIdConsulta(rs.getInt("c.id"));
                 temp.setCpfCliente(rs.getString("c.cpfCliente"));
                 temp.dadosMedico.setRegistro_M(rs.getString("registroMedico"));
                 temp.dadosMedico.setNome_M(rs.getString("m.nome"));
                 temp.dadosMedico.setStrEspecialidade(rs.getString("m.especialidade"));
-                temp.setData(rs.getDate("c.dataConsulta"));
+                temp.setData(cal);
                 arr.add(temp);
             }
-
         } catch (SQLException e) {
-
+            System.err.print(e);
         }
 
         return arr;
@@ -74,13 +76,15 @@ public class Clinica implements ClinicaInterface {
             Consulta temp;
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
+                Calendar cal = Calendar.getInstance();
+                cal.setTime(rs.getDate("c.dataConsulta"));
                 temp = new Consulta();
                 temp.setCpfCliente(rs.getString("c.cpfCliente"));
                 temp.setIdConsulta(rs.getInt("c.id"));
                 temp.dadosMedico.setRegistro_M(rs.getString("registroMedico"));
                 temp.dadosMedico.setNome_M(rs.getString("m.nome"));
                 temp.dadosMedico.setStrEspecialidade(rs.getString("m.especialidade"));
-                temp.setData(rs.getDate("c.dataConsulta"));
+                temp.setData(cal);
                 arr.add(temp);
             }
             conn.close();
@@ -124,35 +128,34 @@ public class Clinica implements ClinicaInterface {
             stmt.close();
             conn.close();
         } catch (SQLException e) {
-
+            System.err.print(e);
+            return false;
         }
         return true;
     }
 
     @Override
     public boolean MarcarConsulta(Consulta consulta) {
-        Date myDate = new Date();
-        // if (this.PesquisarCliente(consulta.getCpfCliente()) != null) {
         Connection conn = Connect.getConnection();
+
         String sql = "INSERT INTO consulta "
                 + "(id, cpfCliente, registroMedico, dataConsulta)"
                 + "Values (?, ? , ?, ?)";
         try (PreparedStatement stmt = conn.prepareStatement(sql);) {
+            long x =  consulta.getData().getTimeInMillis();
             stmt.setString(2, consulta.getCpfCliente());
             stmt.setInt(1, consulta.getIdConsulta());
             stmt.setString(3, consulta.dadosMedico.getRegistro_M());
-            stmt.setDate(4, new java.sql.Date(myDate.getTime()));
+            stmt.setDate(4, new java.sql.Date(x));
             stmt.execute();
             this.Consultas.add(consulta);
             stmt.close();
             conn.close();
         } catch (SQLException e) {
             System.err.println(e);
+            return false;
         }
         return true;
-        /* else {
-         return false;
-         }*/
     }
 
     @Override

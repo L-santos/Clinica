@@ -5,10 +5,11 @@ registro VARCHAR(20) NOT NULL PRIMARY KEY,
 especialidade INTEGER NOT NULL, 
 FOREIGN KEY(ESPECIALIDADE) REFERENCES especialidade(id))ENGINE=InnoDB;
 
-CREATE TABLE IF NOT EXISTS consulta(id INT PRIMARY KEY, cpfCliente VARCHAR(11) NOT NULL,
-FOREIGN KEY(cpfCliente) references cliente(cpf), 
-registroMedico VARCHAR(20) NOT NULL,
-FOREIGN KEY(registroMedico) references medico(registro) , dataConsulta DATE NOT NULL)ENGINE=InnoDB;;
+DROP TABLE IF EXISTS consulta
+CREATE TABLE IF NOT EXISTS consulta(id INT PRIMARY KEY, cpfCliente VARCHAR(11) NOT NULL, 
+registroMedico VARCHAR(20) NOT NULL , dataConsulta DATE NOT NULL,
+FOREIGN KEY(cpfCliente) references cliente(cpf) ON DELETE CASCADE, 
+FOREIGN KEY(registroMedico) references medico(registro) ON DELETE CASCADE)ENGINE=InnoDB;;
 
 CREATE TABLE IF NOT EXISTS funcionario( nome VARCHAR (50) NOT NULL, cpf VARCHAR(11) PRIMARY KEY, 
 telefone varchar (15));

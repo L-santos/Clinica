@@ -8,8 +8,12 @@ package Design;
 import Users.Cliente;
 import Users.Clinica;
 import Users.Consulta;
-import Utiliarios.DesignTools;
+import Utiliarios.Tools;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -40,11 +44,16 @@ public class ClientePanel extends javax.swing.JPanel {
 
         jConsultaDialog = new javax.swing.JDialog();
         jLabel2 = new javax.swing.JLabel();
-        txtRegMedic = new javax.swing.JTextField();
         jBtMarcarConsulta = new javax.swing.JButton();
         cbSetRegMed = new javax.swing.JComboBox();
         jLabel = new javax.swing.JLabel();
         jlCpfCliente = new javax.swing.JLabel();
+        jToolBar1 = new javax.swing.JToolBar();
+        jCBDia = new javax.swing.JComboBox();
+        jCBMes = new javax.swing.JComboBox();
+        jCBAno = new javax.swing.JComboBox();
+        jPopupMenu1 = new javax.swing.JPopupMenu();
+        jMClienteDelConsulta = new javax.swing.JMenuItem();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         ConsultasPanel1 = new javax.swing.JPanel();
         jSeparator3 = new javax.swing.JSeparator();
@@ -55,6 +64,11 @@ public class ClientePanel extends javax.swing.JPanel {
         jConsultaDialog.setTitle("Nova Consulta");
         jConsultaDialog.setMinimumSize(new java.awt.Dimension(334, 194));
         jConsultaDialog.setResizable(false);
+        jConsultaDialog.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                jConsultaDialogComponentShown(evt);
+            }
+        });
 
         jLabel2.setText("Data");
 
@@ -68,6 +82,8 @@ public class ClientePanel extends javax.swing.JPanel {
         cbSetRegMed.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel.setText("Médico");
+
+        jToolBar1.setRollover(true);
 
         javax.swing.GroupLayout jConsultaDialogLayout = new javax.swing.GroupLayout(jConsultaDialog.getContentPane());
         jConsultaDialog.getContentPane().setLayout(jConsultaDialogLayout);
@@ -83,8 +99,10 @@ public class ClientePanel extends javax.swing.JPanel {
                         .addGap(55, 55, 55)
                         .addGroup(jConsultaDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(cbSetRegMed, 0, 182, Short.MAX_VALUE)
-                            .addComponent(txtRegMedic, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
-                            .addComponent(jlCpfCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(jConsultaDialogLayout.createSequentialGroup()
+                                .addGap(104, 104, 104)
+                                .addComponent(jlCpfCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addComponent(jBtMarcarConsulta))
                 .addContainerGap(35, Short.MAX_VALUE))
         );
@@ -95,16 +113,30 @@ public class ClientePanel extends javax.swing.JPanel {
                 .addComponent(jlCpfCliente)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jConsultaDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtRegMedic, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jLabel2)
+                    .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(7, 7, 7)
                 .addGroup(jConsultaDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel)
                     .addComponent(cbSetRegMed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jBtMarcarConsulta)
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
+
+        jCBDia.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11", " " }));
+
+        jCBMes.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jCBAno.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jMClienteDelConsulta.setText("Cancelar");
+        jMClienteDelConsulta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMClienteDelConsultaActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(jMClienteDelConsulta);
 
         setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         setMinimumSize(new java.awt.Dimension(462, 564));
@@ -133,6 +165,7 @@ public class ClientePanel extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tbConsulta1.setComponentPopupMenu(jPopupMenu1);
         jScrollPane5.setViewportView(tbConsulta1);
 
         javax.swing.GroupLayout ConsultasPanel1Layout = new javax.swing.GroupLayout(ConsultasPanel1);
@@ -171,25 +204,56 @@ public class ClientePanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jBtAddConsulta1ActionPerformed
     public void atualizarClientePanel(){
         this.jlCpfCliente.setText(_cliente.getCpf());
-        this.cbSetRegMed.setModel(DesignTools.getMedEspModel());
+        this.cbSetRegMed.setModel(Tools.getMedEspModel());
         attTbConsulta1();
     }
     private void jBtMarcarConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtMarcarConsultaActionPerformed
-        Date d = new Date();
+        Calendar d = Calendar.getInstance();
         int reg = cbSetRegMed.getSelectedIndex();
+        d.set((int)jCBAno.getSelectedItem() , jCBMes.getSelectedIndex(), jCBDia.getSelectedIndex()+1);
         if (new Clinica().MarcarConsulta(new Consulta(_cliente.getCpf(), new Clinica().MostrarMedicos().get(reg).getRegistro_M(), d))) {
             this.jConsultaDialog.setVisible(false);
+            Tools.showMessage(1);
+        }else{
+            Tools.showMessage(2);
         }
         attTbConsulta1();
     }//GEN-LAST:event_jBtMarcarConsultaActionPerformed
 
+    private void jConsultaDialogComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jConsultaDialogComponentShown
+        this.jCBDia.setModel(Tools.getDiaModel());
+        this.jCBAno.setModel(Tools.getAnoModel());
+        this.jCBMes.setModel(Tools.getMesModel(0));
+        this.jToolBar1.add(this.jCBDia);
+        this.jToolBar1.add(this.jCBMes);
+        this.jToolBar1.add(this.jCBAno);
+    }//GEN-LAST:event_jConsultaDialogComponentShown
+
+    private void jMClienteDelConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMClienteDelConsultaActionPerformed
+        JTable table = (JTable) this.jPopupMenu1.getInvoker();
+        if (table.getSelectedRow() != -1) {
+            int n = JOptionPane.showConfirmDialog(
+                    this,
+                    "Deseja Cancelar esta consulta?",
+                    "Excluir",
+                    JOptionPane.YES_NO_OPTION);
+            if (n == 0) {
+                String valueAt = table.getValueAt(table.getSelectedRow(), 0).toString();
+                _cliente.deletarConsulta(valueAt);
+            }
+            attTbConsulta1();
+        }
+    }//GEN-LAST:event_jMClienteDelConsultaActionPerformed
+
+    //Atualiza a tabela consulta
     void attTbConsulta1() {
         DefaultTableModel model = new DefaultTableModel();
+        SimpleDateFormat formataData = new SimpleDateFormat("dd-MM-yyyy");
         model.setColumnIdentifiers(Cliente.getColConsultasCliente());
         _cliente.consultas = _cliente.getConsultas();
        
         for (Consulta consulta : _cliente.consultas) {
-            model.addRow(new Object[]{consulta.getIdConsulta(), consulta.getData(), consulta.dadosMedico.getNome_M()});
+            model.addRow(new Object[]{consulta.getIdConsulta(), formataData.format(consulta.getData().getTime()), consulta.dadosMedico.getNome_M()});
         }
         this.tbConsulta1.setModel(model);
         this.tbConsulta1.setFillsViewportHeight(true);
@@ -200,14 +264,19 @@ public class ClientePanel extends javax.swing.JPanel {
     private javax.swing.JComboBox cbSetRegMed;
     private javax.swing.JButton jBtAddConsulta1;
     private javax.swing.JButton jBtMarcarConsulta;
+    private javax.swing.JComboBox jCBAno;
+    private javax.swing.JComboBox jCBDia;
+    private javax.swing.JComboBox jCBMes;
     private javax.swing.JDialog jConsultaDialog;
     private javax.swing.JLabel jLabel;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JMenuItem jMClienteDelConsulta;
+    private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JTabbedPane jTabbedPane2;
+    private javax.swing.JToolBar jToolBar1;
     private javax.swing.JLabel jlCpfCliente;
     private javax.swing.JTable tbConsulta1;
-    private javax.swing.JTextField txtRegMedic;
     // End of variables declaration//GEN-END:variables
 }

@@ -6,7 +6,6 @@
 package Design;
 
 import Persistence.Connect;
-import Users.Cliente;
 import Users.Clinica;
 import java.sql.Connection;
 import java.util.HashMap;
@@ -31,8 +30,10 @@ public class ClinicaF extends javax.swing.JFrame {
 
     public ClinicaF() {
         initComponents();
-        String s = (String)JOptionPane.showInputDialog(this, "Senha MySQL root");
-        Connect.setPass("root", s);
+        String s = JOptionPane.showInputDialog("Senha MySQL root");
+        if(s != null){
+            Connect.setPass("root", s);
+        }
         adm_panel = new AdmPanel();
         cliente_panel = new ClientePanel();
         lista_panels = new HashMap();
