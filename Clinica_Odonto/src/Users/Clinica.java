@@ -10,6 +10,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -302,6 +304,7 @@ public class Clinica implements ClinicaInterface {
 
     public boolean EditarConsulta(String id, String item, String text) {
         String sql = null;
+        int aux = 0;
         item = item.toLowerCase();
         switch (item) {
             case "id":
@@ -317,14 +320,26 @@ public class Clinica implements ClinicaInterface {
                         + " Where id = ?";
                 break;
             case "data":
-                sql = "UPDATE cliente SET dataConsulta = ?"
+                sql = "UPDATE consulta SET dataConsulta = ?"
                         + " Where id = ?";
+         aux = 1;
                 break;
-
         }
         Connection conn = Connect.getConnection();
         try (PreparedStatement stmt = conn.prepareStatement(sql);) {
+            if(aux == 1){
+                SimpleDateFormat temp = new SimpleDateFormat("dd-MM-yyyy");
+                Calendar cal = Calendar.getInstance();
+                try {
+                    cal.setTime(temp.parse(text));
+                } catch (ParseException ex) {
+                    Logger.getLogger(Clinica.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                long timeInMillis = cal.getTimeInMillis();
+                stmt.setDate(1, new java.sql.Date(timeInMillis));
+            }else{
             stmt.setString(1, text);
+            }
             stmt.setInt(2, Integer.parseInt(id));
             stmt.execute();
         } catch (SQLException e) {
@@ -349,6 +364,7 @@ public class Clinica implements ClinicaInterface {
     public boolean EditarMedico(String registro, String item, String text) {
         String sql = null;
         item = item.toLowerCase();
+        int aux = 0;
         switch (item) {
             case "cpf":
                 sql = "UPDATE medico SET cpf = ?"
@@ -359,18 +375,20 @@ public class Clinica implements ClinicaInterface {
                         + " Where registro = ?";
                 break;
             case "registro":
-                sql = "UPDATE consulta SET registro = ?"
+                sql = "UPDATE medico SET registro = ?"
                         + " Where registro= ?";
                 break;
-            case "data":
-                sql = "UPDATE cliente SET dataConsulta = ?"
+            case "especialidade":
+                sql = "UPDATE medico SET especialidade = ?"
                         + " Where registro = ?";
+                aux = 1;
                 break;
 
         }
         Connection conn = Connect.getConnection();
         try (PreparedStatement stmt = conn.prepareStatement(sql);) {
-            stmt.setString(1, text);
+            if(aux == 1) stmt.setInt(1, Integer.parseInt(text));
+            else stmt.setString(1, text);
             stmt.setString(2, registro);
             stmt.execute();
         } catch (SQLException e) {

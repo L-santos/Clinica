@@ -20,7 +20,7 @@ import javax.swing.JOptionPane;
 public class Tools {
 
     public static String colunasFuncionario[] = {"CPF", "NOME", "TELEFONE"};
-    public static String colunasMedico[] = {"Cpf", "Nome", "Registro", "Especialidade"};
+    public static String colunasMedico[] = {"Registro", "Nome", "Cpf", "Especialidade"};
     public static String colunasConsulta[] = {"Id", "Cliente", "Medico", "Data"};
     public static String colunasCliente[] = {"Cpf", "Nome", "Tel"};
     public static String colConsultasCliente[] = {"ID", "Data", "Medico"};
@@ -71,6 +71,7 @@ public class Tools {
     }
 
     public static ComboBoxModel getMesModel(int ano) {
+        
         DefaultComboBoxModel model = new DefaultComboBoxModel();
         date = Calendar.getInstance();
         int valor = 0;
