@@ -98,7 +98,7 @@ public class Clinica implements ClinicaInterface {
     }
 
     @Override
-    public boolean PesquisarCliente(String cpf) {
+    /*public boolean PesquisarCliente(String cpf) {
         Connection conn = Connect.getConnection();
         String sql = "select cpf from cliente";
         try (PreparedStatement stmt = conn.prepareStatement(sql);) {
@@ -113,6 +113,27 @@ public class Clinica implements ClinicaInterface {
             Logger.getLogger(Clinica.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
+    }*/
+    
+    public Cliente PesquisarCliente(String cpf) {
+        Connection conn = Connect.getConnection();
+        String sql = "select * from cliente";
+        try (PreparedStatement stmt = conn.prepareStatement(sql);) {
+            ResultSet rs = stmt.executeQuery();
+            Cliente cliente = new Cliente();
+            while (rs.next()) {
+                String temp = rs.getString("cpf");
+                if (cpf.equals(temp)) {
+                    cliente.setCpf(temp);
+                    cliente.setNome(rs.getString("nome"));
+                    cliente.setTelefone(rs.getString("telefone"));
+                    return cliente;
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Clinica.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
     @Override
