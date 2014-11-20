@@ -16,13 +16,17 @@ import java.util.Date;
 public interface ClinicaInterface {
     /*
      CONSULTORIO ODONTOLÓGICO
-     Cadastrar medicos, funcionario e clientes
-     Clientes marcam e cancelam consultas
-     Administrador adiciona, remove ou altera dados do cliente
-     Administrador pesquisa e remarca Consultas
-     'ADM':
+     ADM - 
+     Cadastrar:
+     medicos [OK]
+     funcionarios []
+     clientes [OK]
+     Administrador adiciona, remove ou altera dados do cliente [OK]
+     Administrador pesquisa e remarca Consultas []
      Busca - clientes cadastrados por cpf ou telefone
      Relatorio- intervalo de tempo ordenado por especialidade
+    
+     Clientes marcam e cancelam consultas [OK]    
      */
 
     public boolean AddCliente(Cliente _cliente);
