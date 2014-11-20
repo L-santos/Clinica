@@ -105,6 +105,11 @@ public class AdmPanel extends javax.swing.JPanel {
         jBtAddNCliente = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbCliente = new javax.swing.JTable();
+        jSeparator3 = new javax.swing.JSeparator();
+        txtPesqCliente = new javax.swing.JTextField();
+        jBtPesqCliente = new javax.swing.JButton();
+        jBtattCliente = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox();
         GerenciaPanel = new javax.swing.JPanel();
         jSeparator4 = new javax.swing.JSeparator();
         jbAddDentistadg = new javax.swing.JButton();
@@ -481,7 +486,7 @@ public class AdmPanel extends javax.swing.JPanel {
         txtEditCliente.setMinimumSize(new java.awt.Dimension(191, 23));
         txtEditCliente.setPreferredSize(new java.awt.Dimension(191, 23));
 
-        setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        setBorder(javax.swing.BorderFactory.createBevelBorder(1));
         setMinimumSize(new java.awt.Dimension(462, 564));
         setPreferredSize(new java.awt.Dimension(462, 564));
         addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -564,6 +569,9 @@ public class AdmPanel extends javax.swing.JPanel {
         ClientesPanel.setBackground(new java.awt.Color(255, 255, 255));
 
         jBtAddNCliente.setText("Adicionar Cliente");
+        jBtAddNCliente.setMaximumSize(new java.awt.Dimension(121, 23));
+        jBtAddNCliente.setMinimumSize(new java.awt.Dimension(121, 23));
+        jBtAddNCliente.setPreferredSize(new java.awt.Dimension(121, 23));
         jBtAddNCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtAddNClienteActionPerformed(evt);
@@ -588,6 +596,37 @@ public class AdmPanel extends javax.swing.JPanel {
         tbCliente.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane2.setViewportView(tbCliente);
 
+        jSeparator3.setOrientation(javax.swing.SwingConstants.VERTICAL);
+
+        txtPesqCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPesqClienteActionPerformed(evt);
+            }
+        });
+
+        jBtPesqCliente.setBackground(new java.awt.Color(0, 0, 0));
+        jBtPesqCliente.setIcon(new javax.swing.ImageIcon("C:\\Users\\Lab-05\\Documents\\NetBeansProjects\\Clinica\\Clinica\\Clinica_Odonto\\src\\Utiliarios\\icon_search.jpg")); // NOI18N
+        jBtPesqCliente.setToolTipText("");
+        jBtPesqCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtPesqClienteActionPerformed(evt);
+            }
+        });
+
+        jBtattCliente.setText("jButton1");
+        jBtattCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtattClienteActionPerformed(evt);
+            }
+        });
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "CPF", "Telefone" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout ClientesPanelLayout = new javax.swing.GroupLayout(ClientesPanel);
         ClientesPanel.setLayout(ClientesPanelLayout);
         ClientesPanelLayout.setHorizontalGroup(
@@ -598,20 +637,37 @@ public class AdmPanel extends javax.swing.JPanel {
                     .addComponent(jSeparator2)
                     .addGroup(ClientesPanelLayout.createSequentialGroup()
                         .addComponent(jBtAddNCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtPesqCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jBtPesqCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jBtattCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(43, 43, 43))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
         );
         ClientesPanelLayout.setVerticalGroup(
             ClientesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ClientesPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jBtAddNCliente)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(ClientesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jBtPesqCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(txtPesqCliente)
+                    .addComponent(jSeparator3)
+                    .addComponent(jBtAddNCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(ClientesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jBtattCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(74, Short.MAX_VALUE))
+                .addGap(74, 74, 74))
         );
 
         jTabbedPane1.addTab("Clientes", ClientesPanel);
@@ -1048,6 +1104,37 @@ public class AdmPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jBSavarEdicaoActionPerformed
 
+    private void jBtPesqClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtPesqClienteActionPerformed
+        String text = txtPesqCliente.getText();
+        Cliente temp = _clinica.PesquisarCliente(text);
+        if (temp != null) {
+           DefaultTableModel model = new DefaultTableModel();
+           model.setColumnIdentifiers(Tools.colunasCliente);
+           model.addRow(new Object[]{temp.getCpf(), temp.getNome(), temp.getTelefone()});
+           tbCliente.setModel(model);
+        }
+    }//GEN-LAST:event_jBtPesqClienteActionPerformed
+
+    private void txtPesqClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPesqClienteActionPerformed
+
+    }//GEN-LAST:event_txtPesqClienteActionPerformed
+
+    private void jBtattClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtattClienteActionPerformed
+        attTableCliente();
+    }//GEN-LAST:event_jBtattClienteActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        String text = txtPesqCliente.getText();
+        Cliente temp = _clinica.PesquisarCliente(text);
+        if("cpf".equalsIgnoreCase((String)jComboBox1.getSelectedItem()))
+        if (temp != null) {
+           DefaultTableModel model = new DefaultTableModel();
+           model.setColumnIdentifiers(Tools.colunasCliente);
+           model.addRow(new Object[]{temp.getCpf(), temp.getNome(), temp.getTelefone()});
+           tbCliente.setModel(model);
+        }
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
     /*
      */
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1063,6 +1150,8 @@ public class AdmPanel extends javax.swing.JPanel {
     private javax.swing.JButton jBtAddConsulta;
     private javax.swing.JButton jBtAddNCliente;
     private javax.swing.JButton jBtMarcarConsulta;
+    private javax.swing.JButton jBtPesqCliente;
+    private javax.swing.JButton jBtattCliente;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JComboBox jCBAno;
@@ -1071,6 +1160,7 @@ public class AdmPanel extends javax.swing.JPanel {
     private javax.swing.JComboBox jCBSelPropriedade;
     private javax.swing.JDialog jClienteDialog;
     private javax.swing.JDialog jClienteDialog1;
+    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JDialog jConsultaDialog;
     private javax.swing.JDialog jDentistaDialog;
     private javax.swing.JDialog jDialog1;
@@ -1097,6 +1187,7 @@ public class AdmPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
@@ -1121,6 +1212,7 @@ public class AdmPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtNomeCliente;
     private javax.swing.JTextField txtNomeCliente1;
     private javax.swing.JTextField txtNomeMedico;
+    private javax.swing.JTextField txtPesqCliente;
     private javax.swing.JTextField txtRegistroMedico;
     private javax.swing.JTextField txtTelCliente;
     private javax.swing.JTextField txtTelCliente1;

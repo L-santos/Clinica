@@ -281,7 +281,7 @@ public class ClinicaF extends javax.swing.JFrame {
     }//GEN-LAST:event_jmBancoActionPerformed
 
     private void jbLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLoginActionPerformed
-        if (new Clinica().PesquisarCliente(txtCpfCliente.getText()) == true) {
+        if (new Clinica().PesquisarCliente(txtCpfCliente.getText()) != null) {
             this.cliente_panel._cliente.setCpf(txtCpfCliente.getText());
             this.cliente_panel.atualizarClientePanel();
             changePanel(pAnterior, "ClientePanel");
