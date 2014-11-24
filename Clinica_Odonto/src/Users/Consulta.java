@@ -15,6 +15,14 @@ public class Consulta {
     }
     private String cpfCliente;
     public Medico dadosMedico;
+
+    public Medico getDadosMedico() {
+        return dadosMedico;
+    }
+
+    public void setDadosMedico(Medico dadosMedico) {
+        this.dadosMedico = dadosMedico;
+    }
     private int idConsulta;
     private Calendar data;
 

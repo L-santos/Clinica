@@ -10,6 +10,7 @@ import Utiliarios.Tools;
 import java.awt.Component;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -95,11 +96,13 @@ public class AdmPanel extends javax.swing.JPanel {
         ConsultasPanel = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
         jBtAddConsulta = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        jButton4 = new javax.swing.JButton();
+        txtPesqConsulta = new javax.swing.JTextField();
+        jBtPesqConsulta = new javax.swing.JButton();
         jSeparator5 = new javax.swing.JSeparator();
         jScrollPane4 = new javax.swing.JScrollPane();
         tbConsulta = new javax.swing.JTable();
+        jCbPesqConsultaKey = new javax.swing.JComboBox();
+        jBtAttConsulta = new javax.swing.JToggleButton();
         ClientesPanel = new javax.swing.JPanel();
         jSeparator2 = new javax.swing.JSeparator();
         jBtAddNCliente = new javax.swing.JButton();
@@ -109,7 +112,7 @@ public class AdmPanel extends javax.swing.JPanel {
         txtPesqCliente = new javax.swing.JTextField();
         jBtPesqCliente = new javax.swing.JButton();
         jBtattCliente = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox();
+        jCBPesqClienteKey = new javax.swing.JComboBox();
         GerenciaPanel = new javax.swing.JPanel();
         jSeparator4 = new javax.swing.JSeparator();
         jbAddDentistadg = new javax.swing.JButton();
@@ -486,7 +489,7 @@ public class AdmPanel extends javax.swing.JPanel {
         txtEditCliente.setMinimumSize(new java.awt.Dimension(191, 23));
         txtEditCliente.setPreferredSize(new java.awt.Dimension(191, 23));
 
-        setBorder(javax.swing.BorderFactory.createBevelBorder(1));
+        setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         setMinimumSize(new java.awt.Dimension(462, 564));
         setPreferredSize(new java.awt.Dimension(462, 564));
         addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -507,7 +510,12 @@ public class AdmPanel extends javax.swing.JPanel {
             }
         });
 
-        jButton4.setText("Pesquisar");
+        jBtPesqConsulta.setText("Pesquisar");
+        jBtPesqConsulta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtPesqConsultaActionPerformed(evt);
+            }
+        });
 
         jSeparator5.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
@@ -527,6 +535,15 @@ public class AdmPanel extends javax.swing.JPanel {
         tbConsulta.setName("tbConsulta"); // NOI18N
         jScrollPane4.setViewportView(tbConsulta);
 
+        jCbPesqConsultaKey.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Id", "Cpf", "Registro" }));
+
+        jBtAttConsulta.setText("jToggleButton1");
+        jBtAttConsulta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtAttConsultaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout ConsultasPanelLayout = new javax.swing.GroupLayout(ConsultasPanel);
         ConsultasPanel.setLayout(ConsultasPanelLayout);
         ConsultasPanelLayout.setHorizontalGroup(
@@ -534,15 +551,19 @@ public class AdmPanel extends javax.swing.JPanel {
             .addGroup(ConsultasPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(ConsultasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE)
                     .addGroup(ConsultasPanelLayout.createSequentialGroup()
                         .addComponent(jBtAddConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtPesqConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton4)
+                        .addComponent(jBtPesqConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCbPesqConsultaKey, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jBtAttConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jSeparator1))
                 .addContainerGap())
@@ -553,8 +574,10 @@ public class AdmPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(ConsultasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(ConsultasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton4))
+                        .addComponent(txtPesqConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jBtPesqConsulta)
+                        .addComponent(jCbPesqConsultaKey, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jBtAttConsulta))
                     .addComponent(jBtAddConsulta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jSeparator5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -605,7 +628,6 @@ public class AdmPanel extends javax.swing.JPanel {
         });
 
         jBtPesqCliente.setBackground(new java.awt.Color(0, 0, 0));
-        jBtPesqCliente.setIcon(new javax.swing.ImageIcon("C:\\Users\\Lab-05\\Documents\\NetBeansProjects\\Clinica\\Clinica\\Clinica_Odonto\\src\\Utiliarios\\icon_search.jpg")); // NOI18N
         jBtPesqCliente.setToolTipText("");
         jBtPesqCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -620,12 +642,7 @@ public class AdmPanel extends javax.swing.JPanel {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "CPF", "Telefone" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
-            }
-        });
+        jCBPesqClienteKey.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "CPF", "Telefone" }));
 
         javax.swing.GroupLayout ClientesPanelLayout = new javax.swing.GroupLayout(ClientesPanel);
         ClientesPanel.setLayout(ClientesPanelLayout);
@@ -644,7 +661,7 @@ public class AdmPanel extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jBtPesqCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jCBPesqClienteKey, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jBtattCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(43, 43, 43))
@@ -662,7 +679,7 @@ public class AdmPanel extends javax.swing.JPanel {
                     .addComponent(jBtAddNCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(ClientesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jBtattCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jCBPesqClienteKey, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -766,10 +783,13 @@ public class AdmPanel extends javax.swing.JPanel {
          ->->->->->  Ouvindo a 11° de Haydn
          bug abaixo
          */
-        if (_clinica.MarcarConsulta(new Consulta(txtCpfCliente.getText(), _clinica.Medicos.get(reg).getRegistro_M(),
-                d))) {
-            this.jConsultaDialog.dispose();;
-            Tools.showMessage(1);
+        if (_clinica.PesquisarCliente(0, txtCpfCliente.getText()) != null) {
+            if (_clinica.MarcarConsulta(new Consulta(txtCpfCliente.getText(), _clinica.Medicos.get(reg).getRegistro_M(),
+                    d)));
+            {
+                this.jConsultaDialog.dispose();
+                Tools.showMessage(1);
+            }
         } else {
             Tools.showMessage(2);
         }
@@ -779,7 +799,7 @@ public class AdmPanel extends javax.swing.JPanel {
     private void jBtAddClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtAddClienteActionPerformed
         boolean AddCliente;
         if (_clinica.AddCliente(new Cliente(txtCpfCliente1.getText(), txtNomeCliente.getText(), txtTelCliente.getText()))) {
-            this.jClienteDialog.dispose();;
+            this.jClienteDialog.dispose();
             Tools.showMessage(1);
         } else {
             Tools.showMessage(2);
@@ -1050,7 +1070,7 @@ public class AdmPanel extends javax.swing.JPanel {
                             this.txtEditCliente.setText("");
                             Tools.showMessage(1);
                             if (Cliente.uniqueKey.equals(selectedItem)) {
-                                this.jDialog1.dispose();;
+                                this.jDialog1.dispose();
                                 //this.jDialog1WindowClosing(null);
                             }
                         } else {
@@ -1106,12 +1126,18 @@ public class AdmPanel extends javax.swing.JPanel {
 
     private void jBtPesqClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtPesqClienteActionPerformed
         String text = txtPesqCliente.getText();
-        Cliente temp = _clinica.PesquisarCliente(text);
+        String selectedItem = (String) jCBPesqClienteKey.getSelectedItem();
+        //0 para CPF 1 para Telefone
+        int par = 0;
+        if ("telefone".equalsIgnoreCase(selectedItem)) {
+            par = 1;
+        }
+        Cliente temp = _clinica.PesquisarCliente(par, text);
         if (temp != null) {
-           DefaultTableModel model = new DefaultTableModel();
-           model.setColumnIdentifiers(Tools.colunasCliente);
-           model.addRow(new Object[]{temp.getCpf(), temp.getNome(), temp.getTelefone()});
-           tbCliente.setModel(model);
+            DefaultTableModel model = new DefaultTableModel();
+            model.setColumnIdentifiers(Tools.colunasCliente);
+            model.addRow(new Object[]{temp.getCpf(), temp.getNome(), temp.getTelefone()});
+            tbCliente.setModel(model);
         }
     }//GEN-LAST:event_jBtPesqClienteActionPerformed
 
@@ -1123,17 +1149,32 @@ public class AdmPanel extends javax.swing.JPanel {
         attTableCliente();
     }//GEN-LAST:event_jBtattClienteActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        String text = txtPesqCliente.getText();
-        Cliente temp = _clinica.PesquisarCliente(text);
-        if("cpf".equalsIgnoreCase((String)jComboBox1.getSelectedItem()))
-        if (temp != null) {
-           DefaultTableModel model = new DefaultTableModel();
-           model.setColumnIdentifiers(Tools.colunasCliente);
-           model.addRow(new Object[]{temp.getCpf(), temp.getNome(), temp.getTelefone()});
-           tbCliente.setModel(model);
+    private void jBtPesqConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtPesqConsultaActionPerformed
+        String text = txtPesqConsulta.getText();
+        int par = 0;
+        String selectedItem = (String)jCbPesqConsultaKey.getSelectedItem();
+        if("cpf".equalsIgnoreCase(selectedItem)){
+            par = 1;
+        }if("registro".equalsIgnoreCase(selectedItem)){
+            par = 2;
         }
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+        ArrayList <Consulta> temp = _clinica.PesquisarConsulta(par, text);
+        SimpleDateFormat formataData = new SimpleDateFormat("dd-MM-yyyy");
+        if(temp != null){
+            DefaultTableModel model = new DefaultTableModel();
+            model.setColumnIdentifiers(Tools.colunasConsulta);
+            for(Consulta cs : temp){
+                model.addRow(new Object[]{cs.getIdConsulta(), cs.getCpfCliente(),
+                " " + cs.dadosMedico.getRegistro_M() + " (" + cs.dadosMedico.getNome_M() + ")",
+                formataData.format(cs.getData().getTime())});
+            }
+            tbConsulta.setModel(model);
+        }
+    }//GEN-LAST:event_jBtPesqConsultaActionPerformed
+
+    private void jBtAttConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtAttConsultaActionPerformed
+       attTableConsulta();
+    }//GEN-LAST:event_jBtAttConsultaActionPerformed
 
     /*
      */
@@ -1149,18 +1190,20 @@ public class AdmPanel extends javax.swing.JPanel {
     private javax.swing.JButton jBtAddCliente1;
     private javax.swing.JButton jBtAddConsulta;
     private javax.swing.JButton jBtAddNCliente;
+    private javax.swing.JToggleButton jBtAttConsulta;
     private javax.swing.JButton jBtMarcarConsulta;
     private javax.swing.JButton jBtPesqCliente;
+    private javax.swing.JButton jBtPesqConsulta;
     private javax.swing.JButton jBtattCliente;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JComboBox jCBAno;
     private javax.swing.JComboBox jCBDia;
     private javax.swing.JComboBox jCBMes;
+    private javax.swing.JComboBox jCBPesqClienteKey;
     private javax.swing.JComboBox jCBSelPropriedade;
+    private javax.swing.JComboBox jCbPesqConsultaKey;
     private javax.swing.JDialog jClienteDialog;
     private javax.swing.JDialog jClienteDialog1;
-    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JDialog jConsultaDialog;
     private javax.swing.JDialog jDentistaDialog;
     private javax.swing.JDialog jDialog1;
@@ -1192,7 +1235,6 @@ public class AdmPanel extends javax.swing.JPanel {
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JToolBar jToolBar2;
     private javax.swing.JButton jbAddDentistadg;
@@ -1213,6 +1255,7 @@ public class AdmPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtNomeCliente1;
     private javax.swing.JTextField txtNomeMedico;
     private javax.swing.JTextField txtPesqCliente;
+    private javax.swing.JTextField txtPesqConsulta;
     private javax.swing.JTextField txtRegistroMedico;
     private javax.swing.JTextField txtTelCliente;
     private javax.swing.JTextField txtTelCliente1;
