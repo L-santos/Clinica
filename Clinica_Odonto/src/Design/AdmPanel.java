@@ -414,6 +414,7 @@ public class AdmPanel extends javax.swing.JPanel {
 
         jLabel14.setText("Editar");
 
+        jToolBar2.setFloatable(false);
         jToolBar2.setRollover(true);
 
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
@@ -868,6 +869,7 @@ public class AdmPanel extends javax.swing.JPanel {
             if (_clinica.MarcarConsulta(new Consulta(txtCpfCliente.getText(), _clinica.Medicos.get(reg).getRegistro_M(),
                     d)));
             {
+
                 this.jConsultaDialog.dispose();
                 Tools.showMessage(1);
             }
@@ -879,7 +881,8 @@ public class AdmPanel extends javax.swing.JPanel {
     //2
     private void jBtAddClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtAddClienteActionPerformed
         boolean AddCliente;
-        if ("".equals(txtCpfCliente1.getText()) || "".equals(txtNomeCliente.getText()) || "".equals(txtTelCliente)) {
+        System.out.println(Tools.checkNubers(txtCpfCliente1.getText()));
+        if (!Tools.checkNubers(txtCpfCliente1.getText()) || !Tools.checkAlpha(txtNomeCliente.getText()) || !Tools.checkNubers(txtTelCliente.getText())) {
             Tools.showMessage(2);
         } else {
             if (_clinica.AddCliente(new Cliente(txtCpfCliente1.getText(), txtNomeCliente.getText(), txtTelCliente.getText()))) {
@@ -893,7 +896,7 @@ public class AdmPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jBtAddClienteActionPerformed
     //3
     private void jBAddDentistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAddDentistaActionPerformed
-        if ("".equals(txtCpfMedico.getText()) || "".equals(txtNomeMedico.getText()) || "".equals(txtRegistroMedico)) {
+        if (!Tools.checkNubers(txtCpfMedico.getText()) || !Tools.checkAlpha(txtNomeMedico.getText()) || !Tools.checkOnlySpaces(txtRegistroMedico.getText())) {
             Tools.showMessage(2);
         } else {
             int esp = JCBEspecialidade.getSelectedIndex();
@@ -1148,9 +1151,9 @@ public class AdmPanel extends javax.swing.JPanel {
 
     //Salva os edits. O ULTIMO A SER CHAMADO
     private void jBSavarEdicaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSavarEdicaoActionPerformed
+        String text = txtEditCliente.getText(); //Novos dados
         JTable table = (JTable) this.jPopupMenu.getInvoker(); //Pega a tabela chamada
         String name = table.getName(); //...
-        String text = txtEditCliente.getText(); //Novos dados
         String selectedItem = (String) jCBSelPropriedade.getSelectedItem(); //A propriedade a ser trocada
         //Seta pra data caso data tenha sido selecionada
         if ("data".equalsIgnoreCase(selectedItem)) {
@@ -1289,11 +1292,15 @@ public class AdmPanel extends javax.swing.JPanel {
 
     private void jBtAddFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtAddFuncionarioActionPerformed
         boolean AddFuncionario;
-        if (_clinica.AddFuncionario(new Funcionario(txtCpfFuncionario.getText(), txtNomeFuncionario.getText(), txtTelFuncionario.getText()))) {
-            this.jFuncionarioDialog.dispose();
-            Tools.showMessage(1);
-        } else {
+        if (!Tools.checkNubers(txtCpfFuncionario.getText()) || !Tools.checkAlpha(txtNomeFuncionario.getText()) || !Tools.checkNubers(txtTelFuncionario.getText())) {
             Tools.showMessage(2);
+        } else {
+            if (_clinica.AddFuncionario(new Funcionario(txtCpfFuncionario.getText(), txtNomeFuncionario.getText(), txtTelFuncionario.getText()))) {
+                this.jFuncionarioDialog.dispose();
+                Tools.showMessage(1);
+            } else {
+                Tools.showMessage(2);
+            }
         }
         att();
     }//GEN-LAST:event_jBtAddFuncionarioActionPerformed

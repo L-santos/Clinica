@@ -6,6 +6,7 @@
 package Users;
 
 import Persistence.Connect;
+import Utiliarios.Tools;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -247,6 +248,7 @@ public class Clinica {
             conn.close();
         } catch (SQLException e) {
               System.err.print(e);
+              return false;
         }
         return true;
     }
@@ -357,14 +359,17 @@ public class Clinica {
         item = item.toLowerCase();
         switch (item) {
             case "cpf":
+                             if(!Tools.checkNubers(value)) return false;
                 sql = "UPDATE cliente SET cpf = ?"
                         + " Where cpf = ?";
                 break;
             case "nome":
+                   if(!Tools.checkAlpha(value)) return false;
                 sql = "UPDATE cliente SET nome = ?"
                         + " Where cpf = ?";
                 break;
             case "tel":
+                if(!Tools.checkNubers(value)) return false;
                 sql = "UPDATE cliente SET telefone = ?"
                         + " Where cpf = ?";
                 break;
@@ -404,6 +409,7 @@ public class Clinica {
         item = item.toLowerCase();
         switch (item) {
             case "id":
+                if(!Tools.checkNubers(text)) return false;
                 sql = "UPDATE consulta SET id = ?"
                         + " Where id = ?";
                 break;
@@ -471,6 +477,7 @@ public class Clinica {
                         + " Where registro = ?";
                 break;
             case "registro":
+                                if(!Tools.checkOnlySpaces(text)) return false;
                 sql = "UPDATE medico SET registro = ?"
                         + " Where registro= ?";
                 break;
