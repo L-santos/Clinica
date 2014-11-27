@@ -463,7 +463,8 @@ public class Clinica {
         return true;
     }
 
-    public boolean EditarMedico(String registro, String item, String text) {
+    /*zjjsgha
+    (String registro, String item, String text) {
         String sql = null;
         item = item.toLowerCase();
         int aux = 0;
@@ -502,7 +503,7 @@ public class Clinica {
             return false;
         }
         return true;
-    }
+    }*/
 
     /*zrx{
      Connection conn = Connect.getConnection();
