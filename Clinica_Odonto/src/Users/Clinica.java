@@ -126,10 +126,10 @@ public class Clinica {
                 }
             }
             conn.close();
-            
-        return arr;
+
+            return arr;
         } catch (SQLException e) {
-                System.err.print(e);
+            System.err.print(e);
         }
         return null;
     }
@@ -252,8 +252,22 @@ public class Clinica {
     }
 
     public boolean AddFuncionario(Funcionario funcionario) {
-
-        this.Funcionario.add(funcionario);
+        Connection conn = Connect.getConnection();
+        String sql = "INSERT INTO funcionario"
+                + "(cpf, nome, telefone)"
+                + "Values (?, ?, ?)";
+        try (PreparedStatement stmt = conn.prepareStatement(sql);) {
+            stmt.setString(1, funcionario.getCpf_f());
+            stmt.setString(2, funcionario.getNome_f());
+            stmt.setString(3, funcionario.getTel_f());
+            stmt.execute();
+            this.Funcionario.add(funcionario);
+            stmt.close();
+            conn.close();
+        } catch (SQLException e) {
+              System.err.println(e);
+              return false;
+        }
         return true;
     }
 
@@ -303,7 +317,23 @@ public class Clinica {
     }
 
     public ArrayList<Funcionario> MostrarFuncionarios() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<Funcionario> arr = new ArrayList<>();
+        Connection conn = Connect.getConnection();
+        try (PreparedStatement stmt = conn.prepareStatement("select * from funcionario");) {
+            Funcionario temp;
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                temp = new Funcionario();
+                temp.setCpf_f(rs.getString("cpf"));
+                temp.setNome_f(rs.getString("nome"));
+                temp.setTel_f(rs.getString("telefone"));
+                arr.add(temp);
+            }
+        } catch (SQLException e) {
+            System.err.print(e);
+            return null;
+        }
+        return arr;
     }
 
     public ArrayList<String> getEspecialidades() {

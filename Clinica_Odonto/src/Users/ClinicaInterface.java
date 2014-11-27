@@ -23,7 +23,7 @@
 //     funcionarios []
 //     clientes [OK]
 //     Administrador adiciona, remove ou altera dados do cliente [OK]
-//     Administrador pesquisa e remarca Consultas []
+//     Administrador pesquisa e remarca Consultas [OK]
 //     Busca - clientes cadastrados por cpf ou telefone [OK]
 //     Relatorio- intervalo de tempo ordenado por especialidade
 //    

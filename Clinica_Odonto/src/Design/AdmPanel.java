@@ -92,6 +92,14 @@ public class AdmPanel extends javax.swing.JPanel {
         jCBMes = new javax.swing.JComboBox();
         jCBAno = new javax.swing.JComboBox();
         txtEditCliente = new javax.swing.JTextField();
+        jFuncionarioDialog = new javax.swing.JDialog();
+        jLabel15 = new javax.swing.JLabel();
+        txtCpfFuncionario = new javax.swing.JTextField();
+        jLabel16 = new javax.swing.JLabel();
+        txtNomeFuncionario = new javax.swing.JTextField();
+        jBtAddFuncionario = new javax.swing.JButton();
+        jLabel17 = new javax.swing.JLabel();
+        txtTelFuncionario = new javax.swing.JTextField();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         ConsultasPanel = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -489,6 +497,63 @@ public class AdmPanel extends javax.swing.JPanel {
         txtEditCliente.setMinimumSize(new java.awt.Dimension(191, 23));
         txtEditCliente.setPreferredSize(new java.awt.Dimension(191, 23));
 
+        jFuncionarioDialog.setTitle("Novo Cliente");
+        jFuncionarioDialog.setMinimumSize(new java.awt.Dimension(334, 189));
+        jFuncionarioDialog.setResizable(false);
+
+        jLabel15.setText("CPF");
+
+        jLabel16.setText("Nome");
+
+        jBtAddFuncionario.setText("Adicionar");
+        jBtAddFuncionario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtAddFuncionarioActionPerformed(evt);
+            }
+        });
+
+        jLabel17.setText("Telefone");
+
+        javax.swing.GroupLayout jFuncionarioDialogLayout = new javax.swing.GroupLayout(jFuncionarioDialog.getContentPane());
+        jFuncionarioDialog.getContentPane().setLayout(jFuncionarioDialogLayout);
+        jFuncionarioDialogLayout.setHorizontalGroup(
+            jFuncionarioDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jFuncionarioDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jFuncionarioDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jFuncionarioDialogLayout.createSequentialGroup()
+                        .addGroup(jFuncionarioDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel16)
+                            .addComponent(jLabel17))
+                        .addGap(50, 50, 50)
+                        .addGroup(jFuncionarioDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtTelFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNomeFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCpfFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jBtAddFuncionario))
+                .addContainerGap(80, Short.MAX_VALUE))
+        );
+        jFuncionarioDialogLayout.setVerticalGroup(
+            jFuncionarioDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jFuncionarioDialogLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addGroup(jFuncionarioDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtCpfFuncionario)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jFuncionarioDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel16)
+                    .addComponent(txtNomeFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jFuncionarioDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel17)
+                    .addComponent(txtTelFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jBtAddFuncionario)
+                .addContainerGap(24, Short.MAX_VALUE))
+        );
+
         setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         setMinimumSize(new java.awt.Dimension(462, 564));
         setPreferredSize(new java.awt.Dimension(462, 564));
@@ -699,6 +764,11 @@ public class AdmPanel extends javax.swing.JPanel {
         });
 
         jButton5.setText("Adicionar Funcionario");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         tbFuncionario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -843,6 +913,16 @@ public class AdmPanel extends javax.swing.JPanel {
 
     }
 
+    private void attTableFuncionario(){
+        DefaultTableModel model = new DefaultTableModel();
+        model.setColumnIdentifiers(Tools.colunasFuncionario);
+        _clinica.Funcionario = _clinica.MostrarFuncionarios();
+        for(Funcionario f: _clinica.Funcionario){
+            model.addRow(new Object[]{f.getCpf_f(), f.getNome_f(), f.getTel_f()});
+        }
+        this.tbFuncionario.setModel(model);
+        this.tbDentista.setFillsViewportHeight(true);
+    }
     private void attTableConsulta() {
         //A mesma coisa...
         DefaultTableModel model = new DefaultTableModel();
@@ -865,6 +945,7 @@ public class AdmPanel extends javax.swing.JPanel {
         attTableCliente();
         attTableConsulta();
         attTableDentista();
+        attTableFuncionario();
         this.JCBEspecialidade.setModel(Tools.getEspModel());
         this.cbSetRegMed.setModel(Tools.getMedEspModel());
     }
@@ -1176,6 +1257,21 @@ public class AdmPanel extends javax.swing.JPanel {
        attTableConsulta();
     }//GEN-LAST:event_jBtAttConsultaActionPerformed
 
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        this.jFuncionarioDialog.setVisible(true);
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jBtAddFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtAddFuncionarioActionPerformed
+         boolean AddFuncionario;
+        if (_clinica.AddFuncionario(new Funcionario(txtCpfFuncionario.getText(), txtNomeFuncionario.getText(), txtTelFuncionario.getText()))) {
+            this.jFuncionarioDialog.dispose();
+            Tools.showMessage(1);
+        } else {
+            Tools.showMessage(2);
+        }
+        att();
+    }//GEN-LAST:event_jBtAddFuncionarioActionPerformed
+
     /*
      */
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1189,6 +1285,7 @@ public class AdmPanel extends javax.swing.JPanel {
     private javax.swing.JButton jBtAddCliente;
     private javax.swing.JButton jBtAddCliente1;
     private javax.swing.JButton jBtAddConsulta;
+    private javax.swing.JButton jBtAddFuncionario;
     private javax.swing.JButton jBtAddNCliente;
     private javax.swing.JToggleButton jBtAttConsulta;
     private javax.swing.JButton jBtMarcarConsulta;
@@ -1207,6 +1304,7 @@ public class AdmPanel extends javax.swing.JPanel {
     private javax.swing.JDialog jConsultaDialog;
     private javax.swing.JDialog jDentistaDialog;
     private javax.swing.JDialog jDialog1;
+    private javax.swing.JDialog jFuncionarioDialog;
     private javax.swing.JLabel jLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -1214,6 +1312,9 @@ public class AdmPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1249,16 +1350,19 @@ public class AdmPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtCpfCliente;
     private javax.swing.JTextField txtCpfCliente1;
     private javax.swing.JTextField txtCpfCliente2;
+    private javax.swing.JTextField txtCpfFuncionario;
     private javax.swing.JTextField txtCpfMedico;
     private javax.swing.JTextField txtEditCliente;
     private javax.swing.JTextField txtNomeCliente;
     private javax.swing.JTextField txtNomeCliente1;
+    private javax.swing.JTextField txtNomeFuncionario;
     private javax.swing.JTextField txtNomeMedico;
     private javax.swing.JTextField txtPesqCliente;
     private javax.swing.JTextField txtPesqConsulta;
     private javax.swing.JTextField txtRegistroMedico;
     private javax.swing.JTextField txtTelCliente;
     private javax.swing.JTextField txtTelCliente1;
+    private javax.swing.JTextField txtTelFuncionario;
     // End of variables declaration//GEN-END:variables
 
 }
