@@ -134,7 +134,7 @@ public class Clinica {
         return null;
     }
 
-    /*public boolean PesquisarCliente(String cpf) {
+    /*ztrs{
      Connection conn = Connect.getConnection();
      String sql = "select cpf from cliente";
      try (PreparedStatement stmt = conn.prepareStatement(sql);) {
@@ -246,7 +246,7 @@ public class Clinica {
             stmt.close();
             conn.close();
         } catch (SQLException e) {
-
+              System.err.print(e);
         }
         return true;
     }
@@ -497,7 +497,7 @@ public class Clinica {
         return true;
     }
 
-    /*public boolean ExcluirConsulta(String id) {
+    /*zrx{
      Connection conn = Connect.getConnection();
      try (PreparedStatement stmt = conn.prepareStatement("DELETE FROM consulta WHERE id = ?");) {
      stmt.setInt(1, Integer.parseInt(id));

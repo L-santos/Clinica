@@ -28,6 +28,10 @@ public class AdmPanel extends javax.swing.JPanel {
      */
     public AdmPanel() {
         initComponents();
+        tbCliente.getTableHeader().setReorderingAllowed(false);
+        tbConsulta.getTableHeader().setReorderingAllowed(false);
+        tbDentista.getTableHeader().setReorderingAllowed(false);
+        tbFuncionario.getTableHeader().setReorderingAllowed(false);
     }
     Clinica _clinica = new Clinica();
 
@@ -575,7 +579,8 @@ public class AdmPanel extends javax.swing.JPanel {
             }
         });
 
-        jBtPesqConsulta.setText("Pesquisar");
+        jBtPesqConsulta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Utiliarios/gray-classic-search-icon.png"))); // NOI18N
+        jBtPesqConsulta.setToolTipText("k");
         jBtPesqConsulta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtPesqConsultaActionPerformed(evt);
@@ -584,6 +589,7 @@ public class AdmPanel extends javax.swing.JPanel {
 
         jSeparator5.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
+        tbConsulta.setAutoCreateRowSorter(true);
         tbConsulta.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -602,7 +608,7 @@ public class AdmPanel extends javax.swing.JPanel {
 
         jCbPesqConsultaKey.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Id", "Cpf", "Registro" }));
 
-        jBtAttConsulta.setText("jToggleButton1");
+        jBtAttConsulta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Utiliarios/ajax-refresh-icon.gif"))); // NOI18N
         jBtAttConsulta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtAttConsultaActionPerformed(evt);
@@ -619,7 +625,7 @@ public class AdmPanel extends javax.swing.JPanel {
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE)
                     .addGroup(ConsultasPanelLayout.createSequentialGroup()
                         .addComponent(jBtAddConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtPesqConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -640,16 +646,16 @@ public class AdmPanel extends javax.swing.JPanel {
                 .addGroup(ConsultasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(ConsultasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(txtPesqConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jBtPesqConsulta)
+                        .addComponent(jBtPesqConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jCbPesqConsultaKey, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jBtAttConsulta))
-                    .addComponent(jBtAddConsulta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jSeparator5))
+                    .addComponent(jSeparator5)
+                    .addComponent(jBtAddConsulta))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(74, Short.MAX_VALUE))
+                .addContainerGap(72, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Consultas", ConsultasPanel);
@@ -692,7 +698,7 @@ public class AdmPanel extends javax.swing.JPanel {
             }
         });
 
-        jBtPesqCliente.setBackground(new java.awt.Color(0, 0, 0));
+        jBtPesqCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Utiliarios/gray-classic-search-icon.png"))); // NOI18N
         jBtPesqCliente.setToolTipText("");
         jBtPesqCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -700,7 +706,8 @@ public class AdmPanel extends javax.swing.JPanel {
             }
         });
 
-        jBtattCliente.setText("jButton1");
+        jBtattCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Utiliarios/ajax-refresh-icon.gif"))); // NOI18N
+        jBtattCliente.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jBtattCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtattClienteActionPerformed(evt);
@@ -728,8 +735,8 @@ public class AdmPanel extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jCBPesqClienteKey, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jBtattCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(43, 43, 43))
+                        .addComponent(jBtattCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(41, 41, 41))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -737,15 +744,17 @@ public class AdmPanel extends javax.swing.JPanel {
             ClientesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ClientesPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(ClientesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jBtPesqCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(txtPesqCliente)
-                    .addComponent(jSeparator3)
-                    .addComponent(jBtAddNCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addGroup(ClientesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jBtattCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addComponent(jCBPesqClienteKey, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addGroup(ClientesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ClientesPanelLayout.createSequentialGroup()
+                        .addGroup(ClientesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jBtPesqCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(txtPesqCliente)
+                            .addComponent(jSeparator3)
+                            .addComponent(jBtAddNCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(jCBPesqClienteKey, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 3, Short.MAX_VALUE))
+                    .addComponent(jBtattCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -770,6 +779,7 @@ public class AdmPanel extends javax.swing.JPanel {
             }
         });
 
+        tbFuncionario.setAutoCreateRowSorter(true);
         tbFuncionario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -783,6 +793,7 @@ public class AdmPanel extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(tbFuncionario);
 
+        tbDentista.setAutoCreateRowSorter(true);
         tbDentista.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -868,26 +879,34 @@ public class AdmPanel extends javax.swing.JPanel {
     //2
     private void jBtAddClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtAddClienteActionPerformed
         boolean AddCliente;
-        if (_clinica.AddCliente(new Cliente(txtCpfCliente1.getText(), txtNomeCliente.getText(), txtTelCliente.getText()))) {
-            this.jClienteDialog.dispose();
-            Tools.showMessage(1);
-        } else {
+        if ("".equals(txtCpfCliente1.getText()) || "".equals(txtNomeCliente.getText()) || "".equals(txtTelCliente)) {
             Tools.showMessage(2);
+        } else {
+            if (_clinica.AddCliente(new Cliente(txtCpfCliente1.getText(), txtNomeCliente.getText(), txtTelCliente.getText()))) {
+                this.jClienteDialog.dispose();
+                Tools.showMessage(1);
+            } else {
+                Tools.showMessage(2);
+            }
+            att();
         }
-        att();
     }//GEN-LAST:event_jBtAddClienteActionPerformed
     //3
     private void jBAddDentistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAddDentistaActionPerformed
-        int esp = JCBEspecialidade.getSelectedIndex();
-        esp++;
-        if (_clinica.AddMedico(new Medico(txtCpfMedico.getText(), txtNomeMedico.getText(),
-                txtRegistroMedico.getText(), esp))) {
-            this.jDentistaDialog.dispose();;
-            Tools.showMessage(1);
-        } else {
+        if ("".equals(txtCpfMedico.getText()) || "".equals(txtNomeMedico.getText()) || "".equals(txtRegistroMedico)) {
             Tools.showMessage(2);
+        } else {
+            int esp = JCBEspecialidade.getSelectedIndex();
+            esp++;
+            if (_clinica.AddMedico(new Medico(txtCpfMedico.getText(), txtNomeMedico.getText(),
+                    txtRegistroMedico.getText(), esp))) {
+                this.jDentistaDialog.dispose();;
+                Tools.showMessage(1);
+            } else {
+                Tools.showMessage(2);
+            }
+            att();
         }
-        att();
     }//GEN-LAST:event_jBAddDentistaActionPerformed
     public void attTableCliente() {
         //Atualiza a tabela Cliente;
@@ -913,16 +932,17 @@ public class AdmPanel extends javax.swing.JPanel {
 
     }
 
-    private void attTableFuncionario(){
+    private void attTableFuncionario() {
         DefaultTableModel model = new DefaultTableModel();
         model.setColumnIdentifiers(Tools.colunasFuncionario);
         _clinica.Funcionario = _clinica.MostrarFuncionarios();
-        for(Funcionario f: _clinica.Funcionario){
+        for (Funcionario f : _clinica.Funcionario) {
             model.addRow(new Object[]{f.getCpf_f(), f.getNome_f(), f.getTel_f()});
         }
         this.tbFuncionario.setModel(model);
         this.tbDentista.setFillsViewportHeight(true);
     }
+
     private void attTableConsulta() {
         //A mesma coisa...
         DefaultTableModel model = new DefaultTableModel();
@@ -1038,7 +1058,12 @@ public class AdmPanel extends javax.swing.JPanel {
     //PopUp Exclusao, bem simples. Sem comentarios
     private void popMExcluirActionPerformed(java.awt.event.ActionEvent evt) {
         JTable table = (JTable) this.jPopupMenu.getInvoker();
-        if (table.getSelectedRow() != -1) {
+        if (table.getSelectedRow() == -1) {
+            JOptionPane.showMessageDialog(this,
+                    "Nenhuma coluna selecionada!",
+                    "Erro",
+                    JOptionPane.WARNING_MESSAGE);
+        } else if (table.getSelectedRow() != -1) {
             int n = JOptionPane.showConfirmDialog(
                     this,
                     "Deseja excluir o item selecionado?",
@@ -1233,28 +1258,29 @@ public class AdmPanel extends javax.swing.JPanel {
     private void jBtPesqConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtPesqConsultaActionPerformed
         String text = txtPesqConsulta.getText();
         int par = 0;
-        String selectedItem = (String)jCbPesqConsultaKey.getSelectedItem();
-        if("cpf".equalsIgnoreCase(selectedItem)){
+        String selectedItem = (String) jCbPesqConsultaKey.getSelectedItem();
+        if ("cpf".equalsIgnoreCase(selectedItem)) {
             par = 1;
-        }if("registro".equalsIgnoreCase(selectedItem)){
+        }
+        if ("registro".equalsIgnoreCase(selectedItem)) {
             par = 2;
         }
-        ArrayList <Consulta> temp = _clinica.PesquisarConsulta(par, text);
+        ArrayList<Consulta> temp = _clinica.PesquisarConsulta(par, text);
         SimpleDateFormat formataData = new SimpleDateFormat("dd-MM-yyyy");
-        if(temp != null){
+        if (temp != null) {
             DefaultTableModel model = new DefaultTableModel();
             model.setColumnIdentifiers(Tools.colunasConsulta);
-            for(Consulta cs : temp){
+            for (Consulta cs : temp) {
                 model.addRow(new Object[]{cs.getIdConsulta(), cs.getCpfCliente(),
-                " " + cs.dadosMedico.getRegistro_M() + " (" + cs.dadosMedico.getNome_M() + ")",
-                formataData.format(cs.getData().getTime())});
+                    " " + cs.dadosMedico.getRegistro_M() + " (" + cs.dadosMedico.getNome_M() + ")",
+                    formataData.format(cs.getData().getTime())});
             }
             tbConsulta.setModel(model);
         }
     }//GEN-LAST:event_jBtPesqConsultaActionPerformed
 
     private void jBtAttConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtAttConsultaActionPerformed
-       attTableConsulta();
+        attTableConsulta();
     }//GEN-LAST:event_jBtAttConsultaActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -1262,7 +1288,7 @@ public class AdmPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jBtAddFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtAddFuncionarioActionPerformed
-         boolean AddFuncionario;
+        boolean AddFuncionario;
         if (_clinica.AddFuncionario(new Funcionario(txtCpfFuncionario.getText(), txtNomeFuncionario.getText(), txtTelFuncionario.getText()))) {
             this.jFuncionarioDialog.dispose();
             Tools.showMessage(1);

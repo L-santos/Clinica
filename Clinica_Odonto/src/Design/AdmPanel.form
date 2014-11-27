@@ -782,7 +782,7 @@
                           <Component id="jScrollPane4" alignment="0" pref="417" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jBtAddConsulta" min="-2" pref="130" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="jSeparator5" min="-2" pref="2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="txtPesqConsulta" min="-2" pref="100" max="-2" attributes="0"/>
@@ -807,18 +807,18 @@
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                               <Component id="txtPesqConsulta" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jBtPesqConsulta" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jBtPesqConsulta" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                               <Component id="jCbPesqConsultaKey" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jBtAttConsulta" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="jBtAddConsulta" alignment="0" max="32767" attributes="0"/>
                           <Component id="jSeparator5" max="32767" attributes="0"/>
+                          <Component id="jBtAddConsulta" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jScrollPane4" min="-2" pref="384" max="-2" attributes="0"/>
-                      <EmptySpace pref="74" max="32767" attributes="0"/>
+                      <EmptySpace pref="72" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -838,7 +838,10 @@
             </Component>
             <Component class="javax.swing.JButton" name="jBtPesqConsulta">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Pesquisar"/>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/Utiliarios/gray-classic-search-icon.png"/>
+                </Property>
+                <Property name="toolTipText" type="java.lang.String" value="k"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtPesqConsultaActionPerformed"/>
@@ -858,6 +861,7 @@
               <SubComponents>
                 <Component class="javax.swing.JTable" name="tbConsulta">
                   <Properties>
+                    <Property name="autoCreateRowSorter" type="boolean" value="true"/>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="4" rowCount="4">
                         <Column editable="true" title="Title 1" type="java.lang.Object"/>
@@ -888,7 +892,9 @@
             </Component>
             <Component class="javax.swing.JToggleButton" name="jBtAttConsulta">
               <Properties>
-                <Property name="text" type="java.lang.String" value="jToggleButton1"/>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/Utiliarios/ajax-refresh-icon.gif"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtAttConsultaActionPerformed"/>
@@ -928,8 +934,8 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jCBPesqClienteKey" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
-                              <Component id="jBtattCliente" min="-2" pref="30" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+                              <Component id="jBtattCliente" min="-2" pref="32" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                           </Group>
                           <Component id="jScrollPane2" pref="0" max="32767" attributes="0"/>
                       </Group>
@@ -941,17 +947,20 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jBtPesqCliente" alignment="0" pref="0" max="32767" attributes="0"/>
-                          <Component id="txtPesqCliente" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jSeparator3" max="32767" attributes="0"/>
-                          <Component id="jBtAddNCliente" pref="0" max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jBtattCliente" alignment="3" pref="0" max="32767" attributes="0"/>
-                              <Component id="jCBPesqClienteKey" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="jBtPesqCliente" alignment="0" pref="0" max="32767" attributes="0"/>
+                                  <Component id="txtPesqCliente" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jSeparator3" max="32767" attributes="0"/>
+                                  <Component id="jBtAddNCliente" pref="0" max="32767" attributes="0"/>
+                                  <Component id="jCBPesqClienteKey" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="0" pref="3" max="32767" attributes="0"/>
                           </Group>
+                          <Component id="jBtattCliente" pref="0" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="9" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="jSeparator2" min="-2" pref="10" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jScrollPane2" min="-2" pref="384" max="-2" attributes="0"/>
@@ -1024,8 +1033,8 @@
             </Component>
             <Component class="javax.swing.JButton" name="jBtPesqCliente">
               <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="0" red="0" type="rgb"/>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/Utiliarios/gray-classic-search-icon.png"/>
                 </Property>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
               </Properties>
@@ -1035,7 +1044,10 @@
             </Component>
             <Component class="javax.swing.JButton" name="jBtattCliente">
               <Properties>
-                <Property name="text" type="java.lang.String" value="jButton1"/>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/Utiliarios/ajax-refresh-icon.gif"/>
+                </Property>
+                <Property name="horizontalTextPosition" type="int" value="0"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtattClienteActionPerformed"/>
@@ -1139,6 +1151,7 @@
               <SubComponents>
                 <Component class="javax.swing.JTable" name="tbFuncionario">
                   <Properties>
+                    <Property name="autoCreateRowSorter" type="boolean" value="true"/>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="4" rowCount="4">
                         <Column editable="true" title="Title 1" type="java.lang.Object"/>
@@ -1160,6 +1173,7 @@
               <SubComponents>
                 <Component class="javax.swing.JTable" name="tbDentista">
                   <Properties>
+                    <Property name="autoCreateRowSorter" type="boolean" value="true"/>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="4" rowCount="4">
                         <Column editable="true" title="Title 1" type="java.lang.Object"/>
