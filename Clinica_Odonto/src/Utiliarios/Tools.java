@@ -20,7 +20,7 @@ import javax.swing.JOptionPane;
 public class Tools {
 
     public static String colunasFuncionario[] = {"CPF", "NOME", "TELEFONE"};
-    public static String colunasMedico[] = {"Cpf", "Nome", "Registro", "Especialidade"};
+    public static String colunasMedico[] = {"Registro", "Nome", "Cpf", "Especialidade"};
     public static String colunasConsulta[] = {"Id", "Cliente", "Medico", "Data"};
     public static String colunasCliente[] = {"Cpf", "Nome", "Tel"};
     public static String colConsultasCliente[] = {"ID", "Data", "Medico"};
@@ -34,6 +34,61 @@ public class Tools {
             return true;
         } catch (NumberFormatException nfe) {
             System.err.print(nfe);
+            return false;
+        }
+    }
+
+    public static boolean checkNubers(String x) {
+        int length = x.length();
+        int i = 0;
+        if (length == 0) {
+            return false;
+        }
+        do {
+            char charAt = x.charAt(i);
+            if (Character.isDigit(charAt) == false) {
+                return false;
+            }
+            i++;
+        } while (i < length);
+        return true;
+    }
+
+    public static boolean checkOnlySpaces(String x) {
+        int length = x.length();
+        int count = 0;
+        if (length == 0) {
+            return false;
+        }
+        for (int i = 0; i < x.length(); i++) {
+            char charAt = x.charAt(i);
+            if (Character.isSpaceChar(charAt) == true) {
+                count++;
+            }
+        }
+        if(count == length){
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean checkAlpha(String x) {
+        int count = 0;
+        int length = x.length();
+        int i = 0;
+        if (length == 0) {
+            return false;
+        }
+        do {
+            char charAt = x.charAt(i);
+            if (Character.isAlphabetic(charAt) == true) {
+                count++;
+            }
+            i++;
+        } while (i < length);
+        if (count != 0) {
+            return true;
+        } else {
             return false;
         }
     }
@@ -71,6 +126,7 @@ public class Tools {
     }
 
     public static ComboBoxModel getMesModel(int ano) {
+
         DefaultComboBoxModel model = new DefaultComboBoxModel();
         date = Calendar.getInstance();
         int valor = 0;
@@ -96,11 +152,11 @@ public class Tools {
         }
         return model;
     }
-    
-        public static void showMessage(int i) {
+
+    public static void showMessage(int i) {
         switch (i) {
             case 1:
-                JOptionPane.showMessageDialog(new JFrame(),"Salvo!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(new JFrame(), "Salvo!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
                 break;
             case 2:
                 JOptionPane.showMessageDialog(new JFrame(),

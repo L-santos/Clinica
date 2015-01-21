@@ -30,6 +30,7 @@ public class ClientePanel extends javax.swing.JPanel {
     public ClientePanel() {
         initComponents();
         _cliente = new Cliente();
+        tbConsulta1.getTableHeader().setReorderingAllowed(false);
         atualizarClientePanel();
     }
 
@@ -154,6 +155,7 @@ public class ClientePanel extends javax.swing.JPanel {
             }
         });
 
+        tbConsulta1.setAutoCreateRowSorter(true);
         tbConsulta1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
